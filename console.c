@@ -26,7 +26,7 @@ void SetColor(unsigned char _BgColor, unsigned char _TextColor)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ColorNum);
 }
 
-void SetCursor(BOOL _bShow)
+void SetCursorVisible(BOOL _bShow)
 {
 	CONSOLE_CURSOR_INFO curInfo;
 	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &curInfo);

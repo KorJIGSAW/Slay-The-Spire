@@ -3,25 +3,48 @@
 #include <windows.h>
 #include <stdlib.h>
 #include <conio.h>
-#include "console.h"
-#include "cal_damage.h"
-#include "character.h"
+#include "console.h" //화면제어 헤더
+#include "cal_damage.h" //데미지 계산및 처리헤더
+#include "character.h" //캐릭터, 몬스터 상태창
+#include "status.h" //전체 상태창
 
-typedef struct MyCharacter {
-	int hp; //내 체력
-	int power; //힘을 얻었을 때
-	int shield; //내 방어도
-}MyCharacter;
+void DrawBox(int width, int height) //120,30 게임 화면 체크용 함수
+{
+    int i, j;
 
-typedef struct EnemyCharacter {
-	int hp;
-	int power;
-	int shield;
-}EnemyCharacter;
+    // Top border
+    printf("┌");
+    for (i = 1; i < width - 1; i++)
+    {
+        printf("─");
+    }
+    printf("┐\n");
+
+    // Middle rows
+    for (i = 0; i < height - 2; i++)
+    {
+        printf("│");
+        for (j = 1; j < width - 1; j++)
+        {
+            printf(" ");
+        }
+        printf("│\n");
+    }
+
+    // Bottom border
+    printf("└");
+    for (i = 1; i < width - 1; i++)
+    {
+        printf("─");
+    }
+    printf("┘\n");
+}
+
 
 
 int main() {
-	SetConsoleSize(30, 30);
+	//SetConsoleSize(120, 30);
+    DrawBox(120, 30);
 	system("pause");
-	return 0;
+	//return 0;
 }
