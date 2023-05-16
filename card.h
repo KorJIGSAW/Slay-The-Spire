@@ -4,6 +4,8 @@
 
 typedef struct Card{
 	char name[10];
+	int damage;
+	int protect;
 }Card;
 
 void CreateCard() { //카드 생성
