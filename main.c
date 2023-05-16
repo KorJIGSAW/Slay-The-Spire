@@ -7,6 +7,7 @@
 #include "cal_damage.h" //데미지 계산및 처리헤더
 #include "character.h" //캐릭터, 몬스터 상태창
 #include "status.h" //전체 상태창
+#include "card.h"
 
 void DrawBox(int width, int height) //120,30 게임 화면 체크용 함수
 {
