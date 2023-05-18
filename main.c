@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <conio.h>
 #include "console.h" //화면제어 헤더
-#include "cal_damage.h" //데미지 계산및 처리헤더
 #include "character.h" //캐릭터, 몬스터 상태창
 #include "status.h" //전체 상태창
 #include "card.h"
+#include "draw.h"
 
 void DrawBox(int width, int height) //120,30 게임 화면 체크용 함수
 {
@@ -45,7 +45,9 @@ void DrawBox(int width, int height) //120,30 게임 화면 체크용 함수
 
 int main() {
 	//SetConsoleSize(120, 30);
-    DrawBox(120, 30);
+    //DrawBox(120, 30);
+    DrawMainTitle();
+    Sleep(100000);
 	system("pause");
-	//return 0;
+
 }

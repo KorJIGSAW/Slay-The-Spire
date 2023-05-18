@@ -1,3 +1,6 @@
+#ifndef CONSOLE_H
+#define CONSOLE_H
+
 #pragma once
 
 #include <windows.h>
@@ -26,4 +29,6 @@ void SetCursorVisible(BOOL _bShow);
 // console 창의 크기를 정하는 함수 ( 디폴트 80, 25 )
 //──────────────────────────────────────────────────────
 void SetConsoleSize(int _col, int _lines);
+void SetConsole();
+#endif
 
