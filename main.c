@@ -8,14 +8,14 @@
 #include "status.h" //전체 상태창
 #include "card.h"
 #include "draw.h"
-
-
-
-
+#include <fmod.h> //음악 재생 헤더파일
+#include "CSound.h"
 
 int main() {
 	//SetConsoleSize(120, 30);
 	FirstDraw();
+	Music_Start();
+	
     Sleep(100000);
 	system("pause");
 
