@@ -5,6 +5,8 @@
 #include "console.h"
 
 void DrawMainTitle();
+void DrawBox(int width, int height);
+void DrawMainMenu();
 
 
 #endif // !DRAW_H
