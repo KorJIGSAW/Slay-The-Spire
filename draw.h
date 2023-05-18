@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include "console.h"
-
+void FirstDraw();
 void DrawMainTitle();
 void DrawBox(int width, int height);
 void DrawMainMenu();

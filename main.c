@@ -15,9 +15,7 @@
 
 int main() {
 	//SetConsoleSize(120, 30);
-    DrawBox(120, 30);
-    DrawMainTitle();
-    DrawMainMenu();
+	FirstDraw();
     Sleep(100000);
 	system("pause");
 
