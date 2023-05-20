@@ -19,12 +19,9 @@ void Music_Init() {
 
 void Music_Start() {
 	Music_Init();
-	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Sts_Main.mp3", FMOD_DEFAULT, 0, &sound);
-	
-
-	for (;;) {
-		FMOD_System_PlaySound(g_System, sound, NULL, 0, &channel);
-		FMOD_Channel_SetVolume(channel, 0.01f);
-		FMOD_System_Update(g_System);
-	}
+	FMOD_System_CreateSound(g_System, "/Users/user/source/repos/TermProject/src/Sts_Main.mp3", FMOD_DEFAULT, 0, &sound);
+	//傅农林家 官层具窃.
+	FMOD_System_PlaySound(g_System, sound, NULL, 0, &channel);
+	FMOD_Channel_SetVolume(channel, 0.4f);
+	FMOD_System_Update(g_System);
 }

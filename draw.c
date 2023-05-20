@@ -1,10 +1,10 @@
 ﻿#include <stdio.h>
 #include "console.h"
 #include "draw.h"
+#include "input.h"
 
 void FirstDraw() {
 	DrawMainTitle();
-	DrawMainMenu();
 	DrawBox(120, 30);
 }
 
@@ -65,11 +65,141 @@ void DrawBox(int width, int height) {
 	printf("┘");
 }
 
-void DrawMainMenu() {
-	GotoXY(55, 20);
-	printf("▶ 새로 하기");
-	GotoXY(55, 22);
-	printf("▶ 게임 설명");
-	GotoXY(55, 24);
-	printf("▶ 카드 목록");
+
+
+int MenuDraw()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	int mode = 0;
+	int n = 0;
+	StartMenuDraw(hConsole);
+
+	// 키보드 입력을 기다리는 부분
+	// 스페이스바가 입력되면 return하여 빠져나감
+	while (1)
+	{
+		n = 0;
+		//키보드 이벤트를 키값으로 받아오기
+		n = menuControl();
+
+		switch (n)
+		{
+
+			case DOWN:
+			{
+				//PlaySoundEffect(SOUND_SELECT);
+
+				if (mode == 0)
+				{
+					TutorialDraw(hConsole);
+					mode = 1;
+				}
+				else if (mode == 1)
+				{
+					ShowCardMenuDraw(hConsole);
+					mode = 2;
+				}
+				else if (mode == 2) {
+					ExitMenuDraw(hConsole);
+					mode = 3;
+				}
+				break;
+			}
+
+			case UP:
+			{
+				//PlaySoundEffect(SOUND_SELECT);
+
+				if (mode == 4) {
+					ExitMenuDraw(hConsole);
+					mode = 3;
+				}
+				else if (mode == 3) {
+					ShowCardMenuDraw(hConsole);
+					mode = 2;
+				}
+				else if (mode == 2)
+				{
+					TutorialDraw(hConsole);
+					mode = 1;
+				}
+
+				else if (mode == 1)
+				{
+					StartMenuDraw(hConsole);
+					mode = 0;
+				}
+				break;
+			}
+
+			case SPACE:
+			{
+				//PlaySoundEffect(SOUND_CLICK);
+				// 스페이스바(선택)되었을 경우
+				return mode;
+			}
+		}
+	}
 }
+
+void StartMenuDraw(HANDLE hConsole) //메뉴창 드로우 첫 세팅선택지는 새로하기.
+{
+	GotoXY(55, 20);
+
+	SET_GREEN  printf("▶ 게임 하기");
+	GotoXY(55, 22);
+	SET_YELLOW printf("   게임 설명");
+	GotoXY(55, 24);
+	SET_YELLOW printf("   카드 목록");
+	GotoXY(55, 26);
+	SET_YELLOW printf("   게임 종료");
+
+	SET_WHITE
+}
+
+void TutorialDraw(HANDLE hConsole)
+{
+	GotoXY(55, 20);
+
+	SET_YELLOW  printf("   게임 하기");
+	GotoXY(55, 22);
+	SET_GREEN printf("▶ 게임 설명");
+	GotoXY(55, 24);
+	SET_YELLOW printf("   카드 목록");
+	GotoXY(55, 26);
+	SET_YELLOW printf("   게임 종료");
+
+	SET_WHITE
+}
+
+void ShowCardMenuDraw(HANDLE hConsole) {
+	GotoXY(55, 20);
+
+	SET_YELLOW  printf("   게임 하기");
+	GotoXY(55, 22);
+	SET_YELLOW printf("   게임 설명");
+	GotoXY(55, 24);
+	SET_GREEN printf("▶ 카드 목록");
+	GotoXY(55, 26);
+	SET_YELLOW printf("   게임 종료");
+
+	SET_WHITE
+}
+
+void ExitMenuDraw(HANDLE hConsole)
+{
+	GotoXY(55, 20);
+
+	SET_YELLOW  printf("   게임 하기");
+	GotoXY(55, 22);
+	SET_YELLOW printf("   게임 설명");
+	GotoXY(55, 24);
+	SET_YELLOW printf("   카드 목록");
+	GotoXY(55, 26);
+	SET_GREEN printf("▶ 게임 종료");
+
+	SET_WHITE
+}
+
+
