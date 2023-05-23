@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "input.h"
+#include "CSound.h"
+#include "windows.h"
 
 /// 메뉴 조작
 int menuControl()
@@ -15,6 +17,6 @@ int menuControl()
 			else if (temp == 80)	return DOWN;
 			else if (temp == 77)	return RIGHT;
 		}
-		if (temp == ' ')	return SPACE;
+		if (temp == ' ') { Music_Select(); Sleep(1000);	return SPACE; }
 	}
 }

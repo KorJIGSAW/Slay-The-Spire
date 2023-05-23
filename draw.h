@@ -17,5 +17,8 @@ void StartMenuDraw(HANDLE hConsole);
 void ShowCardMenuDraw(HANDLE hConsole);
 void TutorialDraw(HANDLE hConsole);
 void ExitMenuDraw(HANDLE hConsole);
+void MyCharacterDraw(HANDLE hConsole);
+void EnemyCharacterDraw(HANDLE hConsole);
+void GameOverDraw();
 
 #endif // !DRAW_H
