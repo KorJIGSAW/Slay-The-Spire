@@ -22,5 +22,6 @@ void EnemyCharacterDraw(HANDLE hConsole);
 void GameOverDraw();
 void CardListDraw();
 void PlayExampleDraw();
+void CreatingCard();
 
 #endif // !DRAW_H

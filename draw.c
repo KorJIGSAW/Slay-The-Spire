@@ -10,6 +10,19 @@ void FirstDraw() {
 	DrawBox(120, 30);
 }
 
+typedef struct Card {
+	char name[14];
+	int damage;
+	int damage_times;
+	int damage_all;
+	int protect;
+	int My_debuff;
+	int Enemy_debuff;
+	char description[150];
+}Card;
+
+Card card[14];
+
 void DrawMainTitle() {
 	// 
 	GotoXY(17, 5);
@@ -350,9 +363,50 @@ void GameOverDraw() {
 	GotoXY(9, 23); printf("|____________________________________________________________________________________________________|");
 }
 
+void CreatingCard() {
+	for (int i = 0; i < 14; i++) {
+		fgets(card[i].name, sizeof(card[i].name), stdin);
+		card[i].name[strcspn(card[i].name, "\n")] = '\0'; // 개행 문자 제거
+
+		scanf("%d", &card[i].damage);
+		scanf("%d", &card[i].damage_times);
+		scanf("%d", &card[i].damage_all);
+		scanf("%d", &card[i].protect);
+		scanf("%d", &card[i].My_debuff);
+		scanf("%d", &card[i].Enemy_debuff);
+
+		fgetc(stdin); // 이전 입력 버퍼의 개행 문자 제거
+
+		fgets(card[i].description, sizeof(card[i].description), stdin);
+		card[i].description[strcspn(card[i].description, "\n")] = '\0'; // 개행 문자 제거
+	}
+}
+
+
+
 
 void CardListDraw() { //카드 목록 그리기
-
+	system("cls");
+	CreatingCard();
+	for (int i = 0; i < 14; i++) {
+		printf("카드 이름 : %s\n", card[i].name);
+		if (i == 2 || i == 3 || i == 8 || i == 10) {
+			printf("카드 비용 : 2\n");
+		}
+		else if (i == 11 || i == 12) {
+			printf("카드 비용 : 3\n");
+		}
+		else if (i == 6 || i == 9) {
+			printf("카드 비용 : 0\n");
+		}
+		else {
+			printf("카드 비용 : 1\n");
+		}
+		printf("데미지 : %d\n", card[i].damage);
+		printf("방어도 : %d\n", card[i].protect);
+		printf("카드 설명 : %s\n", card[i].description);
+		printf("\n\n");
+	}
 }
 
 void PlayExampleDraw() { //게임 설명 그리기
