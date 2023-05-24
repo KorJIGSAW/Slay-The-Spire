@@ -18,11 +18,20 @@ void StartGame() {
 	FirstDraw();
 	Music_Start();
 	menucode = MenuDraw();
-	if (menucode == 3) {
+	if (menucode == 3) { //게임 종료
 		//goto GameOver
 		GameOverDraw();
 		Sleep(37000); //GameOver.mp3의 노래 재생시간 37초동안 재생 후 종료
 		exit(1);
+	}
+	else if (menucode == 2) { //카드 목록실행
+
+	}
+	else if (menucode == 1) { //게임 설명실행
+
+	}
+	else if (menucode == 0) { //게임 시작실행
+		
 	}
 }
 
