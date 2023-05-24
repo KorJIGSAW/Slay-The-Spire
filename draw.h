@@ -20,5 +20,7 @@ void ExitMenuDraw(HANDLE hConsole);
 void MyCharacterDraw(HANDLE hConsole);
 void EnemyCharacterDraw(HANDLE hConsole);
 void GameOverDraw();
+void CardListDraw();
+void PlayExampleDraw();
 
 #endif // !DRAW_H

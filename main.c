@@ -25,10 +25,10 @@ void StartGame() {
 		exit(1);
 	}
 	else if (menucode == 2) { //카드 목록실행
-
+		CardListDraw();
 	}
 	else if (menucode == 1) { //게임 설명실행
-
+		PlayExampleDraw();
 	}
 	else if (menucode == 0) { //게임 시작실행
 		
