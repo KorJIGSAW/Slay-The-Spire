@@ -17,6 +17,6 @@ int menuControl()
 			else if (temp == 80)	return DOWN;
 			else if (temp == 77)	return RIGHT;
 		}
-		if (temp == ' ') { Music_Select(); Sleep(1000);	return SPACE; }
+		if (temp == ' ') { Music_Select(); Sleep(700);	return SPACE; }
 	}
 }

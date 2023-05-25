@@ -10,18 +10,6 @@ void FirstDraw() {
 	DrawBox(120, 30);
 }
 
-typedef struct Card {
-	char name[14];
-	int damage;
-	int damage_times;
-	int damage_all;
-	int protect;
-	int My_debuff;
-	int Enemy_debuff;
-	char description[150];
-}Card;
-
-Card card[14];
 
 void DrawMainTitle() {
 	// 
@@ -152,10 +140,12 @@ int MenuDraw()
 
 			case SPACE:
 			{
-				//PlaySoundEffect(SOUND_CLICK);
-				// 스페이스바(선택)되었을 경우
 				return mode;
 			}
+			case 'r':
+				return mode;
+			case 'R':
+				return mode;
 		}
 	}
 }
@@ -337,9 +327,7 @@ void GameOverDraw() {
 	//박스 다시 그리기
 	//DrawBox(120, 30);
 	
-	Music_Stop(1); //선택사운드 재생중지
-	Music_Init();
-	Music_GameOver();
+	
 	//Game Over 글자 출력
 	GotoXY(9,  4); printf(".----------------------------------------------------------------------------------------------------.");
 	GotoXY(9,  5); printf("| Slay the Spire.exe                                                                             |x| |");
@@ -366,7 +354,7 @@ void GameOverDraw() {
 void CreatingCard() {
 	for (int i = 0; i < 14; i++) {
 		fgets(card[i].name, sizeof(card[i].name), stdin);
-		card[i].name[strcspn(card[i].name, "\n")] = '\0'; // 개행 문자 제거
+		card[i].name[strcspn(card[i].name, "\n")] = '\0'; // 문자 제거
 
 		scanf("%d", &card[i].damage);
 		scanf("%d", &card[i].damage_times);
@@ -375,17 +363,14 @@ void CreatingCard() {
 		scanf("%d", &card[i].My_debuff);
 		scanf("%d", &card[i].Enemy_debuff);
 
-		fgetc(stdin); // 이전 입력 버퍼의 개행 문자 제거
+		fgetc(stdin); // 이전 입력 버퍼 제거
 
 		fgets(card[i].description, sizeof(card[i].description), stdin);
-		card[i].description[strcspn(card[i].description, "\n")] = '\0'; // 개행 문자 제거
+		card[i].description[strcspn(card[i].description, "\n")] = '\0'; // 문자 제거
 	}
 }
 
-
-
-
-void CardListDraw() { //카드 목록 그리기
+void CardListDraw() { //카드 목록 그리기	
 	system("cls");
 	CreatingCard();
 	for (int i = 0; i < 14; i++) {
