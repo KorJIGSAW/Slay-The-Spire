@@ -3,6 +3,8 @@
 #include <fmod.h>
 #include <stdio.h>
 
+void PauseSound();
+void UnPauseSound();
 void Music_Stop();
 void Music_Init();
 void Music_Start();

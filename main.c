@@ -12,7 +12,10 @@
 #include "CSound.h" //음악 재생 헤더파일
 #include "input.h" //값 입력 헤더
 
+
+
 void StartGame() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetCursorVisible(0);
 	int menucode;
 	SetTitle(TEXT("Slay the Spire.exe")); //한자 문제 해결완료
@@ -22,13 +25,14 @@ MainMonitor:
 	menucode = MenuDraw();
 	if (menucode == 3) { //게임 종료
 		//goto GameOver
+		StopSound();
 		Music_GameOver();
 		GameOverDraw();
 		Sleep(37000); //GameOver.mp3의 노래 재생시간 37초동안 재생 후 종료
 		exit(1);
 	}
 	else if (menucode == 2) { //카드 목록실행
-		CardListDraw(); 
+		CardListDraw();
 		printf("R을 누르시면 메인화면으로 돌아갑니다.");
 		while (1) { //메인화면으로 돌아가기.
 			if (_kbhit())
@@ -44,18 +48,88 @@ MainMonitor:
 		}
 	}
 	else if (menucode == 1) { //게임 설명실행
-		
-		PlayExampleDraw();
-		printf("R을 누르시면 메인화면으로 돌아갑니다.");
-		while (1) { //메인화면으로 돌아가기.
+	Example1:
+		PlayExampleDraw1(hConsole);
+		while (1) {
 			if (_kbhit())
 			{
 				char temp = _getch();
-				if (temp == 'R' || temp == 'r')
+				if (temp == 'R' || temp == 'r') //메인화면으로 돌아가기.
 				{
 					Music_Select();
 					system("cls");
 					goto MainMonitor;
+				}
+				else if (temp == 'N' || temp == 'n') { // 다음 듀토리얼 보기
+					Music_Select();
+					system("cls");
+					goto Example2;
+					break;
+				}
+				else if (temp == 'D' || temp == 'd') { //자신의 카드덱 확인
+					Music_Select();
+					system("cls");
+					break;
+					//자신의 카드덱 프린트함수
+				}
+			}
+		}
+	Example2:
+		PlayExampleDraw2(hConsole);
+		while (1) {
+			if (_kbhit())
+			{
+				char temp = _getch();
+				if (temp == 'B' || temp == 'b') //이전화면으로 돌아가기.
+				{
+					Music_Select();
+					system("cls");
+					goto Example1; //2번째 설명 -> 1번째 설명 돌아가기
+					break;
+				}
+				else if (temp == 'R' || temp == 'r') //메인화면으로 돌아가기.
+				{
+					Music_Select();
+					system("cls");
+					goto MainMonitor;
+				}
+				else if (temp == 'N' || temp == 'n') { // 다음 듀토리얼 보기
+					Music_Select();
+					system("cls");
+					goto Example3;
+					break;
+				}
+				else if (temp == 'D' || temp == 'd') { //자신의 카드덱 확인
+					Music_Select();
+					system("cls");
+					break;
+					//자신의 카드덱 프린트함수
+				}
+			}
+		}
+	Example3:
+		PlayExampleDraw3(hConsole); 
+		while (1) {
+			if (_kbhit())
+			{
+				char temp = _getch();
+				if (temp == 'B' || temp == 'b'){ //이전화면으로 돌아가기
+					Music_Select();
+					system("cls");
+					goto Example2; //3번째 설명 -> 2번째 설명 돌아가기
+					break;
+				}
+				else if (temp == 'R' || temp == 'r') //메인화면으로 돌아가기.
+				{
+					Music_Select();
+					system("cls");
+					goto MainMonitor;
+				}
+				else if (temp == 'D' || temp == 'd') { //자신의 카드덱 확인
+					Music_Select();
+					system("cls");
+					break;
+					//자신의 카드덱 프린트함수
 				}
 			}
 		}

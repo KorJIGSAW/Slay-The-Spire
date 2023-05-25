@@ -10,7 +10,6 @@ void FirstDraw() {
 	DrawBox(120, 30);
 }
 
-
 void DrawMainTitle() {
 	// 
 	GotoXY(17, 5);
@@ -40,6 +39,7 @@ void DrawMainTitle() {
 	*/
 	
 }
+
 void DrawBox(int width, int height) {
 	int i, j;
 
@@ -67,8 +67,6 @@ void DrawBox(int width, int height) {
 	}
 	printf("┘");
 }
-
-
 
 int MenuDraw()
 {
@@ -150,63 +148,56 @@ int MenuDraw()
 	}
 }
 
-
 void StartMenuDraw(HANDLE hConsole) //메뉴창 드로우 첫 세팅선택지는 새로하기.
 {
 	GotoXY(55, 17);
 
 	SET_GREEN  printf("▶ 게임 하기");
 	GotoXY(55, 19);
-	SET_YELLOW printf("   게임 설명");
+	SET_WHITE printf("   게임 설명");
 	GotoXY(55, 21);
-	SET_YELLOW printf("   카드 목록");
+	SET_WHITE printf("   카드 목록");
 	GotoXY(55, 23);
-	SET_YELLOW printf("   게임 종료");
-
-	SET_WHITE
+	SET_WHITE printf("   게임 종료");
 }
 
 void TutorialDraw(HANDLE hConsole)
 {
 	GotoXY(55, 17);
 
-	SET_YELLOW  printf("   게임 하기");
+	SET_WHITE  printf("   게임 하기");
 	GotoXY(55, 19);
 	SET_GREEN printf("▶ 게임 설명");
 	GotoXY(55, 21);
-	SET_YELLOW printf("   카드 목록");
+	SET_WHITE printf("   카드 목록");
 	GotoXY(55, 23);
-	SET_YELLOW printf("   게임 종료");
-
-	SET_WHITE
+	SET_WHITE printf("   게임 종료");
 }
 
 void ShowCardMenuDraw(HANDLE hConsole) {
 	GotoXY(55, 17);
 
-	SET_YELLOW  printf("   게임 하기");
+	SET_WHITE  printf("   게임 하기");
 	GotoXY(55, 19);
-	SET_YELLOW printf("   게임 설명");
+	SET_WHITE printf("   게임 설명");
 	GotoXY(55, 21);
 	SET_GREEN printf("▶ 카드 목록");
 	GotoXY(55, 23);
-	SET_YELLOW printf("   게임 종료");
-
-	SET_WHITE
+	SET_WHITE printf("   게임 종료");
 }
 
 void ExitMenuDraw(HANDLE hConsole)
 {
 	GotoXY(55, 17);
 
-	SET_YELLOW  printf("   게임 하기");
+	SET_WHITE  printf("   게임 하기");
 	GotoXY(55, 19);
-	SET_YELLOW printf("   게임 설명");
+	SET_WHITE printf("   게임 설명");
 	GotoXY(55, 21);
-	SET_YELLOW printf("   카드 목록");
+	SET_WHITE printf("   카드 목록");
 	GotoXY(55, 23);
 	SET_GREEN printf("▶ 게임 종료");
-
+	
 	SET_WHITE
 }
 
@@ -323,11 +314,8 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 }
 
 void GameOverDraw() {
-	//system("cls");
-	//박스 다시 그리기
-	//DrawBox(120, 30);
-	
-	
+	//system("cls");	
+
 	//Game Over 글자 출력
 	GotoXY(9,  4); printf(".----------------------------------------------------------------------------------------------------.");
 	GotoXY(9,  5); printf("| Slay the Spire.exe                                                                             |x| |");
@@ -394,6 +382,231 @@ void CardListDraw() { //카드 목록 그리기
 	}
 }
 
-void PlayExampleDraw() { //게임 설명 그리기
+void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
+	system("cls");
+	GotoXY(0, 0);
+	DrawBox(120,30);
+	for (int i = 3; i < 119; i++) {
+		GotoXY(i, 3);
+		printf("-");
+	}
 
+	SET_GREEN
+	GotoXY(55, 32);
+	printf("Page (1/3)");
+	GotoXY(3, 2);
+	printf("JIGSAW_GO");
+	GotoXY(20, 2);
+	printf("♥ 80/80");
+	GotoXY(50, 2);
+	printf("층수 1");
+
+	SET_WHITE
+	GotoXY(60, 13);
+	printf("손에 있는 카드를 사용하여 적들을 물리치십시오!");
+	GotoXY(60, 15);
+	printf("카드를 사용하려면 "); SET_GREEN printf("에너지"); SET_WHITE printf("가 필요합니다.");
+	GotoXY(60, 16);
+	printf("낼 수 있는 카드가 없어지면, 턴을 종료하십시오.");
+	GotoXY(60, 18);
+	printf("당신의 턴이 시작될 때 새로운 카드들을 뽑고");
+	GotoXY(60, 19);
+	SET_GREEN printf("에너지"); SET_WHITE printf("를 다시 채웁니다.");
+
+	SET_GREEN
+	GotoXY(3, 32);
+	printf("R을 누르면 메인화면으로 돌아갑니다.\n");
+	GotoXY(83, 2);
+	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
+	GotoXY(80, 32);
+	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
+	SET_WHITE
+
+	GotoXY(10, 7);
+	printf("┌─────────────────────┐");
+	GotoXY(10, 8);
+	printf("│                                          │");
+	GotoXY(10, 9);
+	printf("│                                          │");
+	GotoXY(10, 10);
+	printf("│                                          │");
+	GotoXY(10, 11);
+	printf("│                                          │");
+	GotoXY(10, 12);
+	printf("│                                          │");
+	GotoXY(10, 13);
+	printf("│                                          │");
+	GotoXY(10, 14);
+	printf("│                                          │");
+	GotoXY(10, 15);
+	printf("│                                          │");
+	GotoXY(10, 16);
+	printf("│                                          │");
+	GotoXY(10, 17);
+	printf("│                                          │");
+	GotoXY(10, 18);
+	printf("│                                          │");
+	GotoXY(10, 19);
+	printf("│                                          │");
+	GotoXY(10, 20);
+	printf("│                                          │");
+	GotoXY(10, 21);
+	printf("│                                          │");
+	GotoXY(10, 22);
+	printf("│                                          │");
+	GotoXY(10, 23);
+	printf("│                                          │");
+	GotoXY(10, 24);                     
+	printf("└─────────────────────┘");
+}
+
+void PlayExampleDraw2(HANDLE hConsole) {
+	GotoXY(0, 0);
+	DrawBox(120, 30);
+	for (int i = 3; i < 119; i++) {
+		GotoXY(i, 3);
+		printf("-");
+	}
+
+	SET_GREEN
+	GotoXY(55, 32);
+	printf("Page (2/3)");
+	GotoXY(3, 2);
+	printf("JIGSAW_GO");
+	GotoXY(20, 2);
+	printf("♥ 80/80");
+	GotoXY(50, 2);
+	printf("층수 1");
+
+	SET_WHITE
+	GotoXY(60, 13);
+	printf("적들이 당신을 공격하려 하면, 방어 카드를");
+	GotoXY(60, 14);
+	printf("사용하여 "); SET_GREEN printf("방어도"); SET_WHITE printf("를 얻으십시오.");
+	GotoXY(60, 16);
+	SET_GREEN printf("방어도"); SET_WHITE printf("는 받는 공격 피해를 줄여주지만");
+	GotoXY(60, 17);
+	printf("당신의 다음 턴이 시작될 때");	SET_RED printf(" 효과가 사라집니다."); SET_WHITE 
+
+	SET_GREEN
+	GotoXY(3, 32);
+	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
+	GotoXY(83, 2);
+	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
+	GotoXY(80, 32);
+	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
+	SET_WHITE
+
+	GotoXY(10, 7);
+	printf("┌─────────────────────┐");
+	GotoXY(10, 8);
+	printf("│                                          │");
+	GotoXY(10, 9);
+	printf("│                                          │");
+	GotoXY(10, 10);
+	printf("│                                          │");
+	GotoXY(10, 11);
+	printf("│                                          │");
+	GotoXY(10, 12);
+	printf("│                                          │");
+	GotoXY(10, 13);
+	printf("│                                          │");
+	GotoXY(10, 14);
+	printf("│                                          │");
+	GotoXY(10, 15);
+	printf("│                                          │");
+	GotoXY(10, 16);
+	printf("│                                          │");
+	GotoXY(10, 17);
+	printf("│                                          │");
+	GotoXY(10, 18);
+	printf("│                                          │");
+	GotoXY(10, 19);
+	printf("│                                          │");
+	GotoXY(10, 20);
+	printf("│                                          │");
+	GotoXY(10, 21);
+	printf("│                                          │");
+	GotoXY(10, 22);
+	printf("│                                          │");
+	GotoXY(10, 23);
+	printf("│                                          │");
+	GotoXY(10, 24);
+	printf("└─────────────────────┘");
+}
+
+void PlayExampleDraw3(HANDLE hConsole) {
+	GotoXY(0, 0);
+	DrawBox(120, 30);
+	for (int i = 3; i < 119; i++) {
+		GotoXY(i, 3);
+		printf("-");
+	}
+
+	SET_GREEN
+	GotoXY(55, 32);
+	printf("Page (3/3)");
+	GotoXY(3, 2);
+
+	printf("JIGSAW_GO");
+	GotoXY(20, 2);
+	printf("♥ 80/80");
+	GotoXY(50, 2);
+	printf("층수 1");
+	SET_WHITE
+
+	GotoXY(60, 13);
+	printf("당신의 턴이 진행될 동안 적의"); SET_GREEN printf(" 태세"); SET_WHITE printf("를");
+	GotoXY(60, 14);
+	printf("확인할 수 있습니다.");
+	GotoXY(60, 16);
+	printf("적이 당신을 공격하려 한다면, ");  SET_GREEN printf("방어도"); SET_WHITE printf("를");
+	GotoXY(60, 17);
+	printf("올리십시오!");
+
+	SET_GREEN
+	GotoXY(3, 32);
+	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
+	GotoXY(83, 2);
+	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
+	GotoXY(80, 32);
+	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
+	SET_WHITE
+
+	GotoXY(10, 7);
+	printf("┌─────────────────────┐");
+	GotoXY(10, 8);
+	printf("│                                          │");
+	GotoXY(10, 9);
+	printf("│                                          │");
+	GotoXY(10, 10);
+	printf("│                                          │");
+	GotoXY(10, 11);
+	printf("│                                          │");
+	GotoXY(10, 12);
+	printf("│                                          │");
+	GotoXY(10, 13);
+	printf("│                                          │");
+	GotoXY(10, 14);
+	printf("│                                          │");
+	GotoXY(10, 15);
+	printf("│                                          │");
+	GotoXY(10, 16);
+	printf("│                                          │");
+	GotoXY(10, 17);
+	printf("│                                          │");
+	GotoXY(10, 18);
+	printf("│                                          │");
+	GotoXY(10, 19);
+	printf("│                                          │");
+	GotoXY(10, 20);
+	printf("│                                          │");
+	GotoXY(10, 21);
+	printf("│                                          │");
+	GotoXY(10, 22);
+	printf("│                                          │");
+	GotoXY(10, 23);
+	printf("│                                          │");
+	GotoXY(10, 24);
+	printf("└─────────────────────┘");
 }
