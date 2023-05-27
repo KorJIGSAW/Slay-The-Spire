@@ -247,7 +247,7 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 	GotoXY(80, 25);
 	printf("    :::::$ \n"); 
 	GotoXY(80, 26);
-	printf("   :◆:◆::! \n");
+	printf("   :"); SET_RED printf("◆"); SET_WHITE printf(":"); SET_RED printf("◆"); SET_WHITE printf("::!\n");
 	GotoXY(80, 27);
 	printf("  :::...:::;;\n");
 	GotoXY(80, 28);
@@ -273,7 +273,7 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 	GotoXY(95, 20);
 	printf("     ,.,~;#    \n");
 	GotoXY(95, 21);
-	printf("    .!.◆:##    \n");
+	printf("    .!."); SET_RED printf("◆"); SET_WHITE printf(";:##\n");
 	GotoXY(95, 22);
 	printf("     -!-!~#    \n");
 	GotoXY(95, 23);
@@ -293,16 +293,16 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 	GotoXY(76, 14);
 	printf(",.. ");
 	SET_GREEN
-		printf("Protector");
+	printf("Protector");
 	SET_WHITE
 	GotoXY(76, 15);
-	printf("~◆~  .-:;,");
+	printf("~");  SET_RED printf("◆"); SET_WHITE printf("~. - :; , ");
 	GotoXY(76, 16);
 	printf("-:! .,,,.,#  ..:");
 	GotoXY(76, 17);
-	printf("   ,-,...,-- .◆*");
+	printf("   ,-,...,-- .");  SET_RED printf("◆"); SET_WHITE printf("* ");
 	GotoXY(76, 18);
-	printf("   -◆,,◆.- ~##*");
+	printf("   -"); SET_RED printf("◆"); SET_WHITE printf(",,"); SET_RED printf("◆"); SET_WHITE printf(".- ~## * ");
 	GotoXY(76, 19);
 	printf("   ,,,.  :;#");
 	GotoXY(76, 20);
@@ -392,7 +392,7 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	}
 
 	SET_GREEN
-	GotoXY(55, 32);
+	GotoXY(55, 31);
 	printf("Page (1/3)");
 	GotoXY(3, 2);
 	printf("JIGSAW_GO");
@@ -414,11 +414,11 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	SET_GREEN printf("에너지"); SET_WHITE printf("를 다시 채웁니다.");
 
 	SET_GREEN
-	GotoXY(3, 32);
+	GotoXY(3, 31);
 	printf("R을 누르면 메인화면으로 돌아갑니다.\n");
 	GotoXY(83, 2);
 	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
-	GotoXY(80, 32);
+	GotoXY(80, 31);
 	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
 	SET_WHITE
 
@@ -469,7 +469,7 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	}
 
 	SET_GREEN
-	GotoXY(55, 32);
+	GotoXY(55, 31);
 	printf("Page (2/3)");
 	GotoXY(3, 2);
 	printf("JIGSAW_GO");
@@ -489,11 +489,11 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	printf("당신의 다음 턴이 시작될 때");	SET_RED printf(" 효과가 사라집니다."); SET_WHITE 
 
 	SET_GREEN
-	GotoXY(3, 32);
+	GotoXY(3, 31);
 	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
 	GotoXY(83, 2);
 	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
-	GotoXY(80, 32);
+	GotoXY(80, 31);
 	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
 	SET_WHITE
 
@@ -544,7 +544,7 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	}
 
 	SET_GREEN
-	GotoXY(55, 32);
+	GotoXY(55, 31);
 	printf("Page (3/3)");
 	GotoXY(3, 2);
 
@@ -565,12 +565,12 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	printf("올리십시오!");
 
 	SET_GREEN
-	GotoXY(3, 32);
+	GotoXY(3, 31);
 	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
 	GotoXY(83, 2);
 	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
-	GotoXY(80, 32);
-	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
+	GotoXY(80, 31);
+	printf("R을 누르면 메인화면으로 넘어갑니다.\n");
 	SET_WHITE
 
 	GotoXY(10, 7);
