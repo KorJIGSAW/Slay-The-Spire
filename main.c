@@ -5,9 +5,9 @@
 #include <conio.h>
 #include <fmod.h> //음악 재생 헤더파일
 #include "console.h" //화면제어 헤더
-#include "character.h" //캐릭터, 몬스터 상태창
+//#include "character.h" //캐릭터, 몬스터 상태창
 #include "status.h" //전체 상태창
-#include "card.h"
+//#include "card.h"
 #include "draw.h"
 #include "CSound.h" //음악 재생 헤더파일
 #include "input.h" //값 입력 헤더

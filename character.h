@@ -1,10 +1,12 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
+#include "LinkedList.h"
 
 typedef struct MyCharacter {
 	int hp; //내 체력
 	int power; //힘을 얻었을 때
 	int shield; //내 방어도
+	ListNode* Mydeck;
 }MyCharacter;
 
 typedef struct EnemyCharacter {
@@ -12,8 +14,6 @@ typedef struct EnemyCharacter {
 	int power;
 	int shield;
 }EnemyCharacter;
-
-
 
 /* 대안
 typedef struct Character {

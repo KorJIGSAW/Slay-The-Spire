@@ -5,6 +5,12 @@
 #include "draw.h"
 #include "character.h"
 #include "CSound.h"
+#include "card.h"
+
+
+INFORMATION Info;
+MyCharacter Player;
+EnemyCharacter Enemy;
 
 void DrawEnemyCharacter(int stair) { //슬라임
 	//층수에 따라서 적들의 모습출력을 달리해야한다.
@@ -144,11 +150,11 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		GotoXY(80, 28);
 		printf("      $ $  #       \n");
 	}
-	else if (stair == 6) {
+	else if (stair == 6) {//수호기
 		GotoXY(76, 14);
 	printf(",.. ");
 	SET_GREEN
-		printf("Protector");
+		printf("수호기");
 	SET_WHITE
 	GotoXY(76, 15);
 	printf("~◆~  .-:;,");
@@ -167,7 +173,7 @@ void DrawEnemyCharacter(int stair) { //슬라임
 	GotoXY(76, 22);
 	printf("     =-~;#");
 	}
-	else if (stair == 7) {
+	else if (stair == 7) {//스네코
 		GotoXY(80, 15);
 		SET_GREEN
 			printf("        스네코\n");
@@ -199,14 +205,151 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		GotoXY(80, 28);
 		printf(" !#;;;=/   ,---:-  \n");    
 	}
-	else if (stair == 8) {
-
+	else if (stair == 8) { //대왕슬라임
+		GotoXY(80, 9);
+		SET_GREEN
+			printf("         대왕슬라임\n");
+		SET_WHITE
+			GotoXY(80, 10);
+		printf("                 ##          \n");
+		GotoXY(80, 11);
+		printf("           ,.....=###         \n");
+		GotoXY(80, 12);
+		printf("         ........~#$#         \n");
+		GotoXY(80, 13);
+		printf("        ..........-$#$        \n");
+		GotoXY(80, 14);
+		printf("       .............,.,       \n");
+		GotoXY(80, 15);
+		printf("       ...............:       \n");
+		GotoXY(80, 16);
+		printf("      .................       \n");
+		GotoXY(80, 17);
+		printf("     ....,.............-      \n");
+		GotoXY(80, 18);
+		printf("    ....  .....  .......~     \n");
+		GotoXY(80, 19);
+		printf("    ...   ......  .......~     \n");
+		GotoXY(80, 20);
+		printf("   ...   .    ...  ......~     \n");
+		GotoXY(80, 21);
+		printf("   ..... .       .........~     \n");
+		GotoXY(80, 22);
+		printf("   ...               .....~    \n");
+		GotoXY(80, 23);
+		printf("   ... .-=~===:===*==  ...:$  \n");
+		GotoXY(80, 24);
+		printf("     .**==:======*==-....~   \n");
+		GotoXY(80, 25);
+		printf("     .-*;*;****=:*=;:....,   \n");
+		GotoXY(80, 26);
+		printf("    *. ,~!;*-*!!,!*~,...-$   \n");
+		GotoXY(80, 27);
+		printf("      ..... .....~,,.,,,$    \n");
+		GotoXY(80, 28);
+		printf("       #$:-..,....,..~=      \n");                 
 	}
-	else if (stair == 9) {
-
+	else if (stair == 9) { //도누
+		GotoXY(80, 5);
+		SET_GREEN
+			printf("         도누\n");
+		SET_WHITE
+		GotoXY(80, 7);
+		printf("          *!;          \n");
+		GotoXY(80, 8);
+		printf("      ---,,---~~:      \n");
+		GotoXY(80, 9);
+		printf("     :,.....--.--~     \n");
+		GotoXY(80, 10);
+		printf("    ,..,-----,.----*   \n");
+		GotoXY(80, 11);
+		printf("   -.,-~~~----,-----   \n");
+		GotoXY(80, 12);
+		printf("  -.-~~~~~~~~--,,---~  \n");
+		GotoXY(80, 13);
+		printf(" -.,-~~~:::~~---,,---~ \n");
+		GotoXY(80, 14);
+		printf(" ~.-~~~:!*!:~-~~,,---; \n");
+		GotoXY(80, 15);
+		printf(" ,,-~~:!=   ~---,,---: \n");
+		GotoXY(80, 16);
+		printf(";.--~~:!*   :---,,---:=\n");
+		GotoXY(80, 17);
+		printf(":.-~~~:!    ~---,,---;=\n");
+		GotoXY(80, 18);
+		printf(";--~~~:!*   ----,,--~!*\n");
+		GotoXY(80, 19);
+		printf("*~--~~~:;;::~~---,--~!=\n");
+		GotoXY(80, 20);
+		printf(" ---~~~~~~~~~--,,-~~;! \n");
+		GotoXY(80, 21);
+		printf(" ;,-~~~~~~~----,,~:;!= \n");
+		GotoXY(80, 22);
+		printf(" ;,-:~~------~-,-~;!*  \n");
+		GotoXY(80, 23);
+		printf("  ,-:~~~-~~~~~,,-:;!*  \n");
+		GotoXY(80, 24);
+		printf(" / !~~~~~~~~~~--:;:! \\\n");
+		GotoXY(80, 25);
+		printf("/   ~:!!;;;;;;;!!!:!  \\\n");
+		GotoXY(80, 26);
+		printf("    ~:            :!   \n");
+		GotoXY(80, 27);
+		printf("    ~*            :*   \n");
+		GotoXY(80, 28);
+		printf("    *=            $=   \n");
 	}
-	else if (stair == 10) {
-
+	else if (stair == 10) { //데카
+		GotoXY(80, 5);
+		SET_GREEN
+			printf("         데카\n");
+		SET_WHITE
+		GotoXY(80, 6);
+		printf("          .             \n");
+		GotoXY(80, 7);
+		printf("         -....          \n");
+		GotoXY(80, 8);
+		printf("        -.....          \n");
+		GotoXY(80, 9);
+		printf("       ........;        \n");
+		GotoXY(80, 10);
+		printf("      ...........       \n");
+		GotoXY(80, 11);
+		printf("     ,............      \n");
+		GotoXY(80, 12);
+		printf("    ...............     \n");
+		GotoXY(80, 13);
+		printf("   .................    \n");
+		GotoXY(80, 14);
+		printf("  ~.................,   \n");
+		GotoXY(80, 15);
+		printf(" ~...................~  \n");
+		GotoXY(80, 16);
+		printf(" .....................  \n");
+		GotoXY(80, 17);
+		printf(".........,----,---~~~:* \n");
+		GotoXY(80, 18);
+		printf(" -.....-~-----------~!  \n");
+		GotoXY(80, 19);
+		printf(" ;......~----------.~   \n");
+		GotoXY(80, 20);
+		printf("  ......----------..:   \n");
+		GotoXY(80, 21);
+		printf("  ..,....------~~~-.!   \n");
+		GotoXY(80, 22);
+		printf("  .. ....,~--~~-~  ,    \n");
+		GotoXY(80, 23);
+		printf("  ;.  ....-~~~-.-  -    \n");
+		GotoXY(80, 24);
+		printf("   .  =.,,,~~~.,!  :    \n");
+		GotoXY(80, 25);
+		printf("      =.,---~~,-        \n");
+		GotoXY(80, 26);
+		printf("        ,  ~; ~~        \n");
+		GotoXY(80, 27);
+		printf("       =#      :        \n");
+		GotoXY(80, 28);
+		printf("       =#      #        \n");
 	}
 }
 
@@ -214,17 +357,21 @@ void SetGame() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Clear();
 	Music_Round1();
+
 	//첫 기본세팅
 	Info.energy = 3;
 	Info.Non_Picked_Card = 10;
 	Info.Picked_Card = 0;
-	Info.stair = 7;
+	Info.stair = 10;
 	Info.Turn_End = 0;
 	Info.Deck_count = 10;
+
 	// 플레이어 기본세팅
+	Player.Mydeck = Init_Card();
 	Player.hp = 80;
 	Player.power = 0;
 	Player.shield = 0;
+	MixCard(Info.Deck_count, Player.Mydeck);
 
 	// 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
 	GotoXY(0, 0);
@@ -260,9 +407,7 @@ void Play_Round(int stair) {
 	Player.shield = 0;
 	Info.energy = 3;
 	Info.stair++;
-	Info.Turn_End = 0;
-
-	
+	Info.Turn_End = 0;	
 }
 
 void Round_Clear(int stair) {
