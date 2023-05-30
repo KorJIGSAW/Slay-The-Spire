@@ -13,6 +13,8 @@ typedef struct EnemyCharacter {
 	int shield;
 }EnemyCharacter;
 
+
+
 /* ´ë¾È
 typedef struct Character {
 	int hp;

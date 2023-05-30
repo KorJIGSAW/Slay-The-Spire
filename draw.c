@@ -359,10 +359,21 @@ void CreatingCard() {
 }
 
 void CardListDraw() { //카드 목록 그리기	
-	system("cls");
+	//system("cls");
+	Clear();
 	CreatingCard();
 	for (int i = 0; i < 14; i++) {
-		printf("카드 이름 : %s\n", card[i].name);
+		printf("카드 이름 : ");
+		if (i == 0 || i == 2 || i == 3 || i == 5 ||  i == 7 || i == 8 || i == 12 || i ==13) {//공격 카드
+			SET_RED
+			printf("%s\n", card[i].name);
+			SET_WHITE
+		}
+		else if (i == 1 || i == 4 || i == 6 || i == 9 || i == 10 || i == 11) { //스킬카드 일때
+			SET_GREEN
+			printf("%s\n", card[i].name);
+			SET_WHITE
+		}
 		if (i == 2 || i == 3 || i == 8 || i == 10) {
 			printf("카드 비용 : 2\n");
 		}
@@ -383,7 +394,8 @@ void CardListDraw() { //카드 목록 그리기
 }
 
 void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
-	system("cls");
+	//system("cls");
+	Clear();
 	GotoXY(0, 0);
 	DrawBox(120,30);
 	for (int i = 3; i < 119; i++) {
