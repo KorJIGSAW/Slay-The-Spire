@@ -6,7 +6,7 @@
 #include "draw.h"
 
 typedef struct ListNode {
-	Card data;
+	int data;
 	struct ListNode* link;
 }ListNode;
 
@@ -15,7 +15,7 @@ typedef struct CountList {
 	int count;
 }clist;
 
-ListNode* insert_first(ListNode *head, Card value) {
+ListNode* insert_first(ListNode *head, int value) {
 	ListNode* p = (ListNode*)malloc(sizeof(ListNode));
 	p->data = value;
 	p->link = head;
@@ -23,8 +23,8 @@ ListNode* insert_first(ListNode *head, Card value) {
 	return head;
 }
 
-ListNode* change_data(clist* list, int a, int b) {
-	Card temp;
+void change_data(clist* list, int a, int b) {
+	int temp;
 	if (a > b) {
 		a = a ^ b; //xor¿¬»êÀÚ
 		b = a ^ b;
@@ -49,7 +49,7 @@ ListNode* change_data(clist* list, int a, int b) {
 }
 
 
-ListNode* insert(ListNode* head, ListNode* pre, Card value) {
+ListNode* insert(ListNode* head, ListNode* pre, int value) {
 	ListNode* p = (ListNode*)malloc(sizeof(ListNode));
 	p->data = value;
 	p->link = pre->link;
@@ -76,9 +76,14 @@ ListNode* delete_(ListNode* head, ListNode* pre) {
 }
 
 void Deck_print(ListNode* head) {
+	int count = 0;
 	for (ListNode* p = head; p != NULL; p = p->link) {
-		//printf("");
+		DrawCard(p->data, count);
+		count++;
+		if (count == 5) {
+			break;
+		}
 	}
 }
 
-#endif // !LINKEDLIST_H
+#endif 

@@ -14,6 +14,7 @@
 #include "game.h"
 
 void StartGame() {
+	CreatingCard();
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetCursorVisible(0);
 	int menucode;

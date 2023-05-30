@@ -44,5 +44,6 @@ void PlayExampleDraw1(HANDLE hConsole);
 void CreatingCard();
 void PlayExampleDraw2(HANDLE hConsole);
 void PlayExampleDraw3(HANDLE hConsole);
+void DrawCard(int value, int count);
 
 #endif // !DRAW_H

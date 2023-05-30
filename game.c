@@ -7,7 +7,6 @@
 #include "CSound.h"
 #include "card.h"
 
-
 INFORMATION Info;
 MyCharacter Player;
 EnemyCharacter Enemy;
@@ -17,7 +16,7 @@ void DrawEnemyCharacter(int stair) { //슬라임
 	if (stair == 1) {
 		GotoXY(80, 24);
 		SET_GREEN
-			printf("	슬라임\n");
+			printf("    슬라임\n");
 		SET_WHITE
 			GotoXY(80, 25);
 		printf("    :::::$ \n");
@@ -362,7 +361,7 @@ void SetGame() {
 	Info.energy = 3;
 	Info.Non_Picked_Card = 10;
 	Info.Picked_Card = 0;
-	Info.stair = 10;
+	Info.stair = 1;
 	Info.Turn_End = 0;
 	Info.Deck_count = 10;
 
@@ -372,6 +371,7 @@ void SetGame() {
 	Player.power = 0;
 	Player.shield = 0;
 	MixCard(Info.Deck_count, Player.Mydeck);
+	
 
 	// 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
 	GotoXY(0, 0);
