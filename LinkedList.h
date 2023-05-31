@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "draw.h"
+#include "sts.h"
 
 int Deck_sequence[5];
 
@@ -28,9 +28,9 @@ ListNode* insert_first(ListNode *head, int value) {
 void change_data(clist* list, int a, int b) {
 	int temp;
 	if (a > b) {
-		a = a ^ b; //xor¿¬»êÀÚ
-		b = a ^ b;
-		a = a ^ b;
+		int tmp = a;
+		a = b;
+		b = tmp;
 	}
 
 	ListNode* k = list->first;
