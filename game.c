@@ -41,18 +41,18 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		GotoXY(80, 25);
 		printf("    *,,.  .,,:");
 		GotoXY(80, 26);
-		printf("    ;◇-◇  ,- .~");
+		printf("    ;◇-◇  ,- .~");		
 		GotoXY(80, 27);
 		printf("    ,-:-.;., .,#");
 		GotoXY(80, 28);
-		printf("    -,-- ---,.-- ");
+		printf("    -,-- ---,.-- ");           
 	}
 	else if (stair == 3) { //턱벌레
 		GotoXY(80, 19);
 		SET_GREEN
 			printf("        턱벌레");
 		SET_WHITE
-			GotoXY(80, 20);
+		GotoXY(80, 20);
 		printf("         -#         ");
 		GotoXY(80, 21);
 		printf("      :~:~;         ");
@@ -69,7 +69,7 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		GotoXY(80, 27);
 		printf("   $=!!===*~# *:~:~ ");
 		GotoXY(80, 28);
-		printf("         !!#        ");
+		printf("         !!#        ");         
 	}
 	else if (stair == 4) { // 보초기
 		GotoXY(80, 13);
@@ -118,7 +118,7 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		printf("# =               ;\n");
 		GotoXY(80, 13);
 		printf("  *                #\n");
-		GotoXY(80, 14);
+			GotoXY(80, 14);
 		printf(" !$  !!$        *  #\n");
 		GotoXY(80, 15);
 		printf("  # *!. -       ~ * \n");
@@ -151,33 +151,33 @@ void DrawEnemyCharacter(int stair) { //슬라임
 	}
 	else if (stair == 6) {//수호기
 		GotoXY(76, 14);
-		printf(",.. ");
-		SET_GREEN
-			printf("수호기");
-		SET_WHITE
-			GotoXY(76, 15);
-		printf("~◆~  .-:;,");
-		GotoXY(76, 16);
-		printf("-:! .,,,.,#  ..:");
-		GotoXY(76, 17);
-		printf("   ,-,...,-- .◆*");
-		GotoXY(76, 18);
-		printf("   -◆,,◆.- ~##*");
-		GotoXY(76, 19);
-		printf("   ,,,.  :;#");
-		GotoXY(76, 20);
-		printf("   !,,.-~;;$");
-		GotoXY(76, 21);
-		printf("    -~,-:!=");
-		GotoXY(76, 22);
-		printf("     =-~;#");
+	printf(",.. ");
+	SET_GREEN
+		printf("수호기");
+	SET_WHITE
+	GotoXY(76, 15);
+	printf("~◆~  .-:;,");
+	GotoXY(76, 16);
+	printf("-:! .,,,.,#  ..:");
+	GotoXY(76, 17);
+	printf("   ,-,...,-- .◆*");
+	GotoXY(76, 18);
+	printf("   -◆,,◆.- ~##*");
+	GotoXY(76, 19);
+	printf("   ,,,.  :;#");
+	GotoXY(76, 20);
+	printf("   !,,.-~;;$");
+	GotoXY(76, 21);
+	printf("    -~,-:!=");
+	GotoXY(76, 22);
+	printf("     =-~;#");
 	}
 	else if (stair == 7) {//스네코
 		GotoXY(80, 15);
 		SET_GREEN
 			printf("        스네코\n");
 		SET_WHITE
-			GotoXY(80, 16);
+		GotoXY(80, 16);
 		printf("	  ,,,            \n");
 		GotoXY(80, 17);
 		printf("         .,,,-       \n");
@@ -202,7 +202,7 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		GotoXY(80, 27);
 		printf(" !:::~:-/ ,-----.;/   \n");
 		GotoXY(80, 28);
-		printf(" !#;;;=/   ,---:-  \n");
+		printf(" !#;;;=/   ,---:-  \n");    
 	}
 	else if (stair == 8) { //대왕슬라임
 		GotoXY(80, 9);
@@ -246,14 +246,14 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		GotoXY(80, 27);
 		printf("      ..... .....~,,.,,,$    \n");
 		GotoXY(80, 28);
-		printf("       #$:-..,....,..~=      \n");
+		printf("       #$:-..,....,..~=      \n");                 
 	}
 	else if (stair == 9) { //도누
 		GotoXY(80, 5);
 		SET_GREEN
 			printf("         도누\n");
 		SET_WHITE
-			GotoXY(80, 7);
+		GotoXY(80, 7);
 		printf("          *!;          \n");
 		GotoXY(80, 8);
 		printf("      ---,,---~~:      \n");
@@ -303,7 +303,7 @@ void DrawEnemyCharacter(int stair) { //슬라임
 		SET_GREEN
 			printf("         데카\n");
 		SET_WHITE
-			GotoXY(80, 6);
+		GotoXY(80, 6);
 		printf("          .             \n");
 		GotoXY(80, 7);
 		printf("         -....          \n");
@@ -439,14 +439,16 @@ void SetGame() {
 	Player.shield = 0;
 	MixCard(Info.Deck_count, Player.Mydeck);
 
+	
+
 	// 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
 	GotoXY(0, 0);
 	DrawBox(120, 30);
 	for (int i = 3; i < 119; i++) {
 		GotoXY(i, 3);
 		printf("-");
-	}
-
+	} 
+	
 	SET_GREEN
 	GotoXY(27, 32);
 	printf("턴을 종료하려면 E를 누르십시오");
@@ -465,8 +467,8 @@ void SetGame() {
 		printf("적의 체력 %d/20", Enemy.hp);
 	SET_WHITE
 
-		//내 캐릭터 그리기
-		MyCharacterDraw(hConsole);
+	//내 캐릭터 그리기
+	MyCharacterDraw(hConsole);
 	DrawEnemyCharacter(Info.stair);
 
 	while (1) {

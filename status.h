@@ -2,7 +2,6 @@
 #ifndef STATUS_H
 #define STATUS_H
 #include <stdio.h>
-#include "sts.h"
 
 typedef struct status {
 	int energy; //¿¡³ÊÁö

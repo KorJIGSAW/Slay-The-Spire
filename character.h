@@ -1,6 +1,6 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
-#include "sts.h"
+#include "LinkedList.h"
 
 typedef struct MyCharacter {
 	int hp; //³» Ã¼·Â

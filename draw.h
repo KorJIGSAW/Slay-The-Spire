@@ -2,7 +2,20 @@
 #define DRAW_H
 
 #include <stdio.h>
-#include "sts.h"
+#include "console.h"
+
+typedef struct Card {
+	char name[14];
+	int damage;
+	int damage_times;
+	int damage_all;
+	int protect;
+	int My_debuff;
+	int Enemy_debuff;
+	char description[150];
+}Card;
+
+Card card[14];
 
 /*
 #define SET_GREEN SetConsoleTextAttribute(hConsole, 10);
