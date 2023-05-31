@@ -359,10 +359,20 @@ void CreatingCard() {
 }
 
 void CardListDraw() { //카드 목록 그리기	
-	system("cls");
-	CreatingCard();
+	//system("cls");
+	Clear();
 	for (int i = 0; i < 14; i++) {
-		printf("카드 이름 : %s\n", card[i].name);
+		printf("카드 이름 : ");
+		if (i == 0 || i == 2 || i == 3 || i == 5 ||  i == 7 || i == 8 || i == 12 || i ==13) {//공격 카드
+			SET_RED
+			printf("%s\n", card[i].name);
+			SET_WHITE
+		}
+		else if (i == 1 || i == 4 || i == 6 || i == 9 || i == 10 || i == 11) { //스킬카드 일때
+			SET_GREEN
+			printf("%s\n", card[i].name);
+			SET_WHITE
+		}
 		if (i == 2 || i == 3 || i == 8 || i == 10) {
 			printf("카드 비용 : 2\n");
 		}
@@ -383,7 +393,8 @@ void CardListDraw() { //카드 목록 그리기
 }
 
 void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
-	system("cls");
+	//system("cls");
+	Clear();
 	GotoXY(0, 0);
 	DrawBox(120,30);
 	for (int i = 3; i < 119; i++) {
@@ -609,4 +620,98 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	printf("│                                          │");
 	GotoXY(10, 24);
 	printf("└─────────────────────┘");
+}
+
+void DrawCard(int value, int count) { // 카드를 드로우하는 함수
+	GotoXY(count*25, 35);
+	printf("       %s", card[value].name);
+	GotoXY(count*25, 37);
+	if (value == 0) { //타격
+		printf("에너지 : 1");
+		GotoXY(count * 25, 38);
+		printf("데미지 : 6");
+	}
+	else if (value == 1) { //수비
+		printf("에너지 : 1\n");
+		GotoXY(count * 25, 38);
+		printf("방어력 : 5\n");
+	}
+	else if (value == 2) { //강타
+		printf("에너지 : 2\n");
+		GotoXY(count * 25, 38);
+		printf("데미지 : 8\n");
+		GotoXY(count * 25, 39);
+		printf("힘 증가 : 1\n");
+	}
+	else if (value == 3) { //완벽한 타격
+		printf("에너지 : 2\n");
+		GotoXY(count * 25, 38);
+		printf("보유 타격 : 5장\n");
+		GotoXY(count * 25, 39);
+		printf("데미지 : 16\n");
+	}
+	else if (value == 4) {//발화
+		printf("에너지 : 1\n");
+		GotoXY(count * 25, 38);
+		printf("힘 증가 : 3\n");
+	}
+	else if (value == 5) {//철의 파동
+		printf("에너지 : 1\n");
+		GotoXY(count * 25, 38);
+		printf("데미지 : 5\n");
+		GotoXY(count * 25, 39);
+		printf("방어력 : 5\n");
+	}
+	else if (value == 6) {//사혈
+		printf("에너지 : 0\n");
+		GotoXY(count * 25, 38);
+		printf("자가 데미지 : 3\n");
+		GotoXY(count * 25, 39);
+		printf("에너지 생성 : 2\n");
+	}
+	else if (value == 7) {//연타
+		printf("에너지 : 1\n");
+		GotoXY(count * 25, 38);
+		printf("데미지 : 2\n");
+		GotoXY(count * 25, 39);
+		printf("4번 반복 공격\n");
+	}
+	else if (value == 8) {//화형
+		printf("에너지 : 2\n");
+		GotoXY(count * 25, 38);
+		printf("적군 전체 데미지 : 21\n");
+		GotoXY(count * 25, 39);
+		printf("힘 감소 : 1");
+	}
+	else if (value == 9) {//제물
+		printf("에너지 : 0\n");
+		GotoXY(count * 25, 38);
+		printf("자가 데미지 : 6\n");
+		GotoXY(count * 25, 39);
+		printf("에너지 생성 : 2\n");
+		GotoXY(count * 25, 40);
+		printf("카드 드로우 : 3장\n");
+	}
+	else if (value == 10) {//무적
+		printf("에너지 : 2\n");
+		GotoXY(count * 25, 38);
+		printf("방어도 : 30\n");
+	}
+	else if (value == 11) {//악마의 형상
+		printf("에너지 : 3\n");
+		GotoXY(count * 25, 38);
+		printf("매턴 힘증가 : 3\n");
+	}
+	else if (value == 12) {//몽둥이질
+		printf("에너지 : 3\n");
+		GotoXY(count * 25, 38);
+		printf("데미지 : 32\n");
+	}
+	else if (value == 13) {//드롭킥
+		printf("에너지 : 1\n");
+		GotoXY(count * 25, 38);
+		printf("데미지 : 5\n");
+		GotoXY(count * 25, 39);
+		printf("카드 드로우 : 1장\n");
+	}
 }

@@ -8,8 +8,12 @@ typedef struct status {
 	int stair;  //층수
 	int Non_Picked_Card; //뽑지 않은 카드
 	int Picked_Card; //뽑은 카드
+	int Deck_count;
 	int Turn_End;
-};
+}INFORMATION;
+
+/*
+* 
 // 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
 
 // 캐릭터 이름 표기 위치 지정, 프린트 함수
@@ -23,6 +27,10 @@ typedef struct status {
 // 뽑은 카드 표기 위치 지정, 프린트 함수
 
 // 턴엔드 표기 위치 지정, 프린트 함수
+
+*/
+
+
 
 
 #endif // !STATUS_H

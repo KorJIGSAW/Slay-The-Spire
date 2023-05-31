@@ -6,12 +6,12 @@
 /// 메뉴 조작
 int menuControl()
 {
-	if (_kbhit())
+	if (kbhit())
 	{
-		char temp = _getch();
+		char temp = getch();
 		if (temp == -32)
 		{
-			char temp = _getch();
+			char temp = getch();
 			if (temp == 72)			return UP;
 			else if (temp == 75)	return LEFT;
 			else if (temp == 80)	return DOWN;

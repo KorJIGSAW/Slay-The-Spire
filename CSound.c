@@ -10,7 +10,17 @@ FMOD_CHANNEL* channel2;
 typedef enum {
 	SOUND_Start = 0,
 	SOUND_SELECT = 1,
-	SOUND_GameOver = 8
+	SOUND_ROUND1 = 2,
+	SOUND_ROUND2 = 3,
+	SOUND_ROUND3 = 4,
+	SOUND_ROUND4 = 5,
+	SOUND_ROUND5 = 6,
+	SOUND_ROUND6 = 7,
+	SOUND_ROUND7 = 8,
+	SOUND_ROUND8 = 9,
+	SOUND_ROUND9 = 10,
+	SOUND_ROUND10 = 11,
+	SOUND_GameOver = 12
 } EffectSound;
 
 void StopSound()
@@ -73,6 +83,98 @@ void Music_Select() {
 	FMOD_Channel_SetVolume(channel2, 0.1f);
 	FMOD_System_Update(g_System);
 }
+
+void Music_Round1() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_1.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND1]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND1], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round2() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_2.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND2]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND2], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round3() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_3.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND3]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND3], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round4() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_4.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND4]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND4], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round5() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_5.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND5]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND5], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round6() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_6.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND6]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND6], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round7() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_7.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND7]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND7], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round8() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_8.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND8]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND8], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round9() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_9.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND9]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND9], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+void Music_Round10() {
+	Music_Init();
+	PauseSound();
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_10.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND10]);
+	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND10], NULL, 0, &channel1);
+	FMOD_Channel_SetVolume(channel1, 0.1f);
+	FMOD_System_Update(g_System);
+}
+
+
 
 
 
