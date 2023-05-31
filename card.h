@@ -3,11 +3,20 @@
 #define CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include "game.h"
-#include "LinkedList.h"
-#include "draw.h"
-#include "time.h"
+#include "sts.h"
 
+typedef struct Card {
+	char name[14];
+	int damage;
+	int damage_times;
+	int damage_all;
+	int protect;
+	int My_debuff;
+	int Enemy_debuff;
+	char description[150];
+}Card;
+
+Card card[14];
 
 ListNode* Init_Card() { //초기 카드 세팅
 	ListNode* head = NULL;
