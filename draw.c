@@ -92,7 +92,6 @@ int MenuDraw()
 			case DOWN:
 			{
 				//PlaySoundEffect(SOUND_SELECT);
-
 				if (mode == 0)
 				{
 					TutorialDraw(hConsole);
@@ -113,7 +112,6 @@ int MenuDraw()
 			case UP:
 			{
 				//PlaySoundEffect(SOUND_SELECT);
-
 				if (mode == 4) {
 					ExitMenuDraw(hConsole);
 					mode = 3;
@@ -624,7 +622,7 @@ void PlayExampleDraw3(HANDLE hConsole) {
 
 void DrawCard(int value, int count) { // 카드를 드로우하는 함수
 	GotoXY(count*25, 35);
-	printf("       %s", card[value].name);
+	printf("     %d.%s", count+1, card[value].name);
 	GotoXY(count*25, 37);
 	if (value == 0) { //타격
 		printf("에너지 : 1");
@@ -714,4 +712,6 @@ void DrawCard(int value, int count) { // 카드를 드로우하는 함수
 		GotoXY(count * 25, 39);
 		printf("카드 드로우 : 1장\n");
 	}
+	SET_WHITE
 }
+

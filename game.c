@@ -352,6 +352,73 @@ void DrawEnemyCharacter(int stair) { //슬라임
 	}
 }
 
+void UseCard(int num) {
+	if (num == 0) { //타격
+		Info.energy--;
+		Enemy.hp = Enemy.hp - 6 - Player.power;
+		Player.hp -= 10;
+	}
+	else if (num == 2) { //수비
+		Info.energy--;
+		Player.shield += 5;
+	}
+	else if (num == 3) { //강타
+		Info.energy -= 2;
+		Enemy.hp = Enemy.hp - 8 - Player.power;
+		Player.power++;
+	}
+	else if (num == 4) { //완벽한 타격
+		Info.energy -= 2;
+		Enemy.hp = Enemy.hp - 16 - Player.power;
+	}
+	else if (num == 5) { //발화
+		Info.energy--;
+		Player.power += 2;
+	}
+	else if (num == 6) { //철의 파동
+		Info.energy--;
+		Player.shield = 5;
+		Enemy.hp -= 5;
+	}
+	else if (num == 7) { //사혈
+		Player.hp -= 3;
+		Info.energy += 2;
+	}
+	else if (num == 8) { //연타
+		Info.energy--;
+		for (int i = 0; i < 4; i++) {
+			Enemy.hp = Enemy.hp - 2 - Player.power;
+		}
+	}
+	else if (num == 9) { //화형
+		Info.energy -= 2;
+		Enemy.hp = Enemy.hp - 21 - Player.power;
+		Player.power--;
+	}
+	else if (num == 10) { //제물
+		Info.energy += 2;
+		Player.hp -= 6;
+		Player.power += 2;
+	}
+	else if (num == 11) { //무적
+		Info.energy -= 2;
+		Player.shield += 30;
+	}
+	else if (num == 12) { //악마의 형상
+		Info.energy -= 3;
+		//매턴 힘 3씩
+	}
+	else if (num == 13) { //몽둥이질
+		Info.energy -= 3;
+		Enemy.hp = Enemy.hp - 32 - Player.power;
+	}
+	else if (num == 14) { //드롭킥
+		Info.energy--;
+		Enemy.hp = Enemy.hp - 5 - Player.power;
+	}
+
+}
+
 void SetGame() {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Clear();
@@ -371,6 +438,7 @@ void SetGame() {
 	Player.power = 0;
 	Player.shield = 0;
 	MixCard(Info.Deck_count, Player.Mydeck);
+
 	
 
 	// 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
@@ -382,40 +450,120 @@ void SetGame() {
 	} 
 	
 	SET_GREEN
-	GotoXY(46, 32);
+	GotoXY(27, 32);
 	printf("턴을 종료하려면 E를 누르십시오");
+	GotoXY(73, 32);
+	printf("선택할 카드를 G,H,J,K,L순으로 입력하시오");
 	GotoXY(3, 2);
 	printf("Player");
-	GotoXY(30, 2);
+	GotoXY(12, 2);
 	printf("♥ %d/80", Player.hp);
-	GotoXY(70, 2);
+	GotoXY(30, 2);
 	printf("%d층", Info.stair);
-	GotoXY(100, 2);
+	GotoXY(50, 2);
 	printf("에너지 (%d/3)", Info.energy);
+	GotoXY(80, 2);
+	SET_RED
+		printf("적의 체력 %d/20", Enemy.hp);
 	SET_WHITE
 
 	//내 캐릭터 그리기
 	MyCharacterDraw(hConsole);
 	DrawEnemyCharacter(Info.stair);
+
+	while (1) {
+		if (kbhit())
+		{
+			char temp = getch();
+			if (temp == 103) {
+				//1번 카드 사용 후 적 체력 감소등 처리
+				Clear();
+				UseCard(Deck_sequence[0]);
+				Update_Round(Info.stair);
+			}
+			else if (temp == 104) {
+				//2번 카드 사용 후 적 체력 감소등 처리
+				UseCard(Deck_sequence[1]);
+				Clear();
+				Update_Round(Info.stair);
+			}
+			else if (temp == 105) {
+				//1번 카드 사용 후 적 체력 감소등 처리
+				UseCard(Deck_sequence[2]);
+				Clear();
+				Update_Round(Info.stair);
+			}
+			else if (temp == 106) {
+				//1번 카드 사용 후 적 체력 감소등 처리
+				UseCard(Deck_sequence[3]);
+				Clear();
+				Update_Round(Info.stair);
+			}
+			else if (temp == 107) {
+				//1번 카드 사용 후 적 체력 감소등 처리
+				UseCard(Deck_sequence[4]);
+				Clear();
+				Update_Round(Info.stair);
+			}
+			else if (temp == 101) {
+				Info.Turn_End = 1;
+				Clear();
+				Update_Round(Info.stair);
+			}
+		}
+	}
 }
 
-void Play_Round(int stair) {
+void Update_Round(int stair) {
+	if (Enemy.hp <= 0) {
+		//Round_Clear();
+	}
+	else if (Player.hp <= 0) {
+		StopSound();
+		Music_GameOver();
+		GameOverDraw();
+		Sleep(37000); //GameOver.mp3의 노래 재생시간 37초동안 재생 후 종료
+		exit(1);
+	}
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	// 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
+	GotoXY(0, 0);
+	DrawBox(120, 30);
+	for (int i = 3; i < 119; i++) {
+		GotoXY(i, 3);
+		printf("-");
+	}
+
+	SET_GREEN
+	GotoXY(27, 32);
+	printf("턴을 종료하려면 E를 누르십시오");
+	GotoXY(73, 32);
+	printf("선택할 카드를 G,H,J,K,L순으로 입력하시오");
+	GotoXY(3, 2);
+	printf("Player");
+	GotoXY(12, 2);
+	printf("♥ %d/80", Player.hp);
+	GotoXY(30, 2);
+	printf("%d층", Info.stair);
+	GotoXY(50, 2);
+	printf("에너지 (%d/3)", Info.energy);
+	GotoXY(80, 2);
+	SET_RED
+	printf("적의 체력 %d/20", Enemy.hp);
+	SET_WHITE
+
 	MyCharacterDraw(hConsole);
 	DrawEnemyCharacter(Info.stair);
-	Player.power = 0;
-	Player.shield = 0;
-	Info.energy = 3;
-	Info.stair++;
-	Info.Turn_End = 0;	
 }
 
 void Round_Clear(int stair) {
 	Clear();
 	if (stair == 10) {
 		//게임 클리어 화면 띄우기
+		//Game_Clear();
 	}
 	else {
-		Play_Round(stair);
+		Info.stair++;
+		//다음 라운드 진행
 	}
 }
