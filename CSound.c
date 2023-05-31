@@ -168,7 +168,7 @@ void Music_Round9() {
 void Music_Round10() {
 	Music_Init();
 	PauseSound();
-	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_10.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND10]);
+	FMOD_System_CreateSound(g_System, "/Users/bm838/source/repos/Slay the Spire/Slay the Spire/src/Round_Boss.mp3", FMOD_DEFAULT, 0, &sound[SOUND_ROUND10]);
 	FMOD_System_PlaySound(g_System, sound[SOUND_ROUND10], NULL, 0, &channel1);
 	FMOD_Channel_SetVolume(channel1, 0.1f);
 	FMOD_System_Update(g_System);

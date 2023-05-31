@@ -9,7 +9,8 @@
 
 INFORMATION Info;
 MyCharacter Player;
-EnemyCharacter Enemy;
+EnemyCharacter Enemy[10];
+
 
 void DrawEnemyCharacter(int stair) { //슬라임
 	//층수에 따라서 적들의 모습출력을 달리해야한다.
@@ -355,71 +356,81 @@ void DrawEnemyCharacter(int stair) { //슬라임
 void UseCard(int num) {
 	if (num == 0) { //타격
 		Info.energy--;
-		Enemy.hp = Enemy.hp - 6 - Player.power;
-		Player.hp -= 10;
+		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 6 - Player.power;
 	}
-	else if (num == 2) { //수비
+	else if (num == 1) { //수비
 		Info.energy--;
 		Player.shield += 5;
 	}
-	else if (num == 3) { //강타
+	else if (num == 2) { //강타
 		Info.energy -= 2;
-		Enemy.hp = Enemy.hp - 8 - Player.power;
+		Enemy[Info.stair-1].hp -= 8 + Player.power;
 		Player.power++;
 	}
-	else if (num == 4) { //완벽한 타격
+	else if (num == 3) { //완벽한 타격
 		Info.energy -= 2;
-		Enemy.hp = Enemy.hp - 16 - Player.power;
+		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 16 - Player.power;
 	}
-	else if (num == 5) { //발화
+	else if (num == 4) { //발화
 		Info.energy--;
 		Player.power += 2;
 	}
-	else if (num == 6) { //철의 파동
+	else if (num == 5) { //철의 파동
 		Info.energy--;
 		Player.shield = 5;
-		Enemy.hp -= 5;
+		Enemy[Info.stair-1].hp -= 5;
 	}
-	else if (num == 7) { //사혈
+	else if (num == 6) { //사혈
 		Player.hp -= 3;
 		Info.energy += 2;
 	}
-	else if (num == 8) { //연타
+	else if (num == 7) { //연타
 		Info.energy--;
 		for (int i = 0; i < 4; i++) {
-			Enemy.hp = Enemy.hp - 2 - Player.power;
+			Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 2 - Player.power;
 		}
 	}
-	else if (num == 9) { //화형
+	else if (num == 8) { //화형
 		Info.energy -= 2;
-		Enemy.hp = Enemy.hp - 21 - Player.power;
+		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 21 - Player.power;
 		Player.power--;
 	}
-	else if (num == 10) { //제물
+	else if (num == 9) { //제물
 		Info.energy += 2;
 		Player.hp -= 6;
 		Player.power += 2;
 	}
-	else if (num == 11) { //무적
+	else if (num == 10) { //무적
 		Info.energy -= 2;
 		Player.shield += 30;
 	}
-	else if (num == 12) { //악마의 형상
+	else if (num == 11) { //악마의 형상
 		Info.energy -= 3;
 		//매턴 힘 3씩
 	}
-	else if (num == 13) { //몽둥이질
+	else if (num == 12) { //몽둥이질
 		Info.energy -= 3;
-		Enemy.hp = Enemy.hp - 32 - Player.power;
+		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 32 - Player.power;
 	}
-	else if (num == 14) { //드롭킥
+	else if (num == 13) { //드롭킥
 		Info.energy--;
-		Enemy.hp = Enemy.hp - 5 - Player.power;
+		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 5 - Player.power;
 	}
 
 }
 
 void SetGame() {
+	Enemy[0].hp = 14;
+	Enemy[1].hp = 15;
+	Enemy[2].hp = 40;
+	Enemy[3].hp = 50;
+	Enemy[4].hp = 48;
+	Enemy[5].hp = 20;
+	Enemy[6].hp = 60;
+	Enemy[7].hp = 75;
+	Enemy[8].hp = 100;
+	Enemy[9].hp = 150;
+
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Clear();
 	Music_Round1();
@@ -437,9 +448,10 @@ void SetGame() {
 	Player.hp = 80;
 	Player.power = 0;
 	Player.shield = 0;
-	MixCard(Info.Deck_count, Player.Mydeck);
-
 	
+	for (int i = 0; i < 10; i++) {
+		MixCard(Info.Deck_count, Player.Mydeck);
+	}
 
 	// 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
 	GotoXY(0, 0);
@@ -450,21 +462,52 @@ void SetGame() {
 	} 
 	
 	SET_GREEN
-	GotoXY(27, 32);
+		GotoXY(20, 32);
 	printf("턴을 종료하려면 E를 누르십시오");
-	GotoXY(73, 32);
-	printf("선택할 카드를 G,H,J,K,L순으로 입력하시오");
+	GotoXY(60, 32);
+	printf("선택할 카드를 1~5순으로 입력하시오");
 	GotoXY(3, 2);
 	printf("Player");
 	GotoXY(12, 2);
 	printf("♥ %d/80", Player.hp);
-	GotoXY(30, 2);
+	GotoXY(22, 2);
 	printf("%d층", Info.stair);
+	GotoXY(32, 2);
+	printf("힘 : %d", Player.power);
 	GotoXY(50, 2);
 	printf("에너지 (%d/3)", Info.energy);
-	GotoXY(80, 2);
+	GotoXY(100, 2);
 	SET_RED
-		printf("적의 체력 %d/20", Enemy.hp);
+		if (Info.stair == 1) {
+			printf("적의 체력 %d/14", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 2) {
+			printf("적의 체력 %d/15", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 3) {
+			printf("적의 체력 %d/40", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 4) {
+			printf("적의 체력 %d/50", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 5) {
+			printf("적의 체력 %d/48", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 6) {
+			printf("적의 체력 %d/20", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 7) {
+			printf("적의 체력 %d/60", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 8) {
+			printf("적의 체력 %d/75", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 9) {
+			printf("적의 체력 %d/100", Enemy[Info.stair - 1].hp);
+		}
+		else if (Info.stair == 10) {
+			printf("적의 체력 %d/150", Enemy[Info.stair - 1].hp);
+		}
 	SET_WHITE
 
 	//내 캐릭터 그리기
@@ -475,54 +518,240 @@ void SetGame() {
 		if (kbhit())
 		{
 			char temp = getch();
-			if (temp == 103) {
+			if (temp == 49) {
 				//1번 카드 사용 후 적 체력 감소등 처리
+				if (Info.energy - card[Deck_sequence[0]].energy < 0) {
+					GotoXY(45, 20);
+					SET_GREEN
+					printf("에너지가 부족합니다!");
+					Sleep(1000);
+					Clear();
+					SET_WHITE
+					Update_Round(Info.stair);
+					Deck_print(Player.Mydeck);
+					continue;
+				}
 				Clear();
 				UseCard(Deck_sequence[0]);
 				Update_Round(Info.stair);
+				Deck_print(Player.Mydeck);
 			}
-			else if (temp == 104) {
+			else if (temp == 50) {
 				//2번 카드 사용 후 적 체력 감소등 처리
+				if (Info.energy - card[Deck_sequence[1]].energy < 0) {
+					GotoXY(45, 20);
+					SET_GREEN
+						printf("에너지가 부족합니다!");
+					Sleep(1000);
+					Clear();
+					SET_WHITE
+					Update_Round(Info.stair);
+					Deck_print(Player.Mydeck);
+					continue;
+				}
 				UseCard(Deck_sequence[1]);
 				Clear();
 				Update_Round(Info.stair);
+				Deck_print(Player.Mydeck);
 			}
-			else if (temp == 105) {
-				//1번 카드 사용 후 적 체력 감소등 처리
+			else if (temp == 51) {
+				//3번 카드 사용 후 적 체력 감소등 처리
+				if (Info.energy - card[Deck_sequence[2]].energy < 0) {
+					GotoXY(45, 20);
+					SET_GREEN
+						printf("에너지가 부족합니다!");
+					Sleep(1000);
+					Clear();
+					SET_WHITE
+					Update_Round(Info.stair);
+					Deck_print(Player.Mydeck);
+					continue;
+				}
 				UseCard(Deck_sequence[2]);
 				Clear();
 				Update_Round(Info.stair);
+				Deck_print(Player.Mydeck);
 			}
-			else if (temp == 106) {
-				//1번 카드 사용 후 적 체력 감소등 처리
+			else if (temp == 52) {
+				//4번 카드 사용 후 적 체력 감소등 처리
+				if (Info.energy - card[Deck_sequence[3]].energy < 0) {
+					GotoXY(45, 20);
+					SET_GREEN
+						printf("에너지가 부족합니다!");
+					Sleep(1000);
+					Clear();
+					SET_WHITE
+						Update_Round(Info.stair);
+					Deck_print(Player.Mydeck);
+					continue;
+				}
 				UseCard(Deck_sequence[3]);
 				Clear();
 				Update_Round(Info.stair);
+				Deck_print(Player.Mydeck);
 			}
-			else if (temp == 107) {
-				//1번 카드 사용 후 적 체력 감소등 처리
+			else if (temp == 53) {
+				//5번 카드 사용 후 적 체력 감소등 처리
+				if (Info.energy - card[Deck_sequence[4]].energy < 0) {
+					GotoXY(45, 20);
+					SET_GREEN
+						printf("에너지가 부족합니다!");
+					Sleep(1000);
+					Clear();
+					SET_WHITE
+						Update_Round(Info.stair);
+					Deck_print(Player.Mydeck);
+					continue;
+				}
 				UseCard(Deck_sequence[4]);
 				Clear();
 				Update_Round(Info.stair);
+				Deck_print(Player.Mydeck);
 			}
-			else if (temp == 101) {
+			else if (temp == 54) {
 				Info.Turn_End = 1;
 				Clear();
 				Update_Round(Info.stair);
+				Deck_print(Player.Mydeck);
 			}
 		}
 	}
 }
 
-void Update_Round(int stair) {
-	if (Enemy.hp <= 0) {
-		//Round_Clear();
+void Round_Clear(int stair) {
+	Clear();
+	if (stair == 10) {
+		//게임 클리어 화면 띄우기
+		//Game_Clear();
 	}
-	else if (Player.hp <= 0) {
+	else {
+		//다음 라운드 진행
+		Info.stair++;
+		Clear();
+		SET_GREEN
+			//3번 깜박임
+			GotoXY(50, 20);
+		printf("다음 층 : %d층", Info.stair);
+		Sleep(500);
+		Clear();
+		Sleep(500);
+		GotoXY(50, 20);
+		printf("다음 층 : %d층", Info.stair);
+		Sleep(500);
+		Clear();
+		Sleep(500);
+		GotoXY(50, 20);
+		printf("다음 층 : %d층", Info.stair);
+		Sleep(500);
+		Clear();
+		Sleep(500);
+			SET_WHITE
+		for (int i = 0; i < 10; i++) {
+			MixCard(Info.Deck_count, Player.Mydeck);
+		}
+		Info.energy = 3;
+		Info.Turn_End = 0;
+		Player.power = 0;
+		Player.shield = 0;
+		if (Info.stair == 2) {
+			StopSound();
+			Music_Round2();
+		}
+		else if (Info.stair == 3) {
+			StopSound();
+			Music_Round3();
+		}
+		else if (Info.stair == 4) {
+			StopSound();
+			Music_Round4();
+		}
+		else if (Info.stair == 5) {
+			StopSound();
+			Music_Round5();
+		}
+		else if (Info.stair == 6) {
+			StopSound();
+			Music_Round6();
+		}
+		else if (Info.stair == 7) {
+			StopSound();
+			Music_Round7();
+		}
+		else if (Info.stair == 8) {
+			StopSound();
+			Music_Round8();
+		}
+		else if (Info.stair == 9) {
+			StopSound();
+			Music_Round9();
+		}
+		else if (Info.stair == 10) {
+			StopSound();
+			Music_Round10();
+		}
+	}
+}
+
+void Update_Round(int stair) {
+	if (Enemy[stair-1].hp <= 0) {
+		Round_Clear(Info.stair);
+		SET_RED
+			/*
+			* if (Info.stair == 1) {
+				printf("적의 체력 %d/14", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 2) {
+				printf("적의 체력 %d/15", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 3) {
+				printf("적의 체력 %d/40", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 4) {
+				printf("적의 체력 %d/50", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 5) {
+				printf("적의 체력 %d/48", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 6) {
+				printf("적의 체력 %d/20", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 7) {
+				printf("적의 체력 %d/60", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 8) {
+				printf("적의 체력 %d/75", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 9) {
+				printf("적의 체력 %d/100", Enemy[Info.stair - 1].hp);
+			}
+			else if (Info.stair == 10) {
+				printf("적의 체력 %d/150", Enemy[Info.stair - 1].hp);
+			}
+			*/
+			
+		SET_WHITE
+	}
+	if (Player.hp <= 0) {
+		Music_GameOver(); 
+		//3번 깜박임.
+		Clear();
+		GotoXY(50, 20);
+		printf("플레이어의 체력이 모두 소진되었습니다!");
+		Sleep(500);
+		Clear();
+		Sleep(500);
+		GotoXY(50, 20);
+		printf("플레이어의 체력이 모두 소진되었습니다!");
+		Sleep(500);
+		Clear();
+		Sleep(500);
+		GotoXY(50, 20);
+		printf("플레이어의 체력이 모두 소진되었습니다!");
+		Sleep(500);
+
 		StopSound();
-		Music_GameOver();
 		GameOverDraw();
-		Sleep(37000); //GameOver.mp3의 노래 재생시간 37초동안 재생 후 종료
+		Sleep(40000); //GameOver.mp3의 노래 재생시간 37초동안 재생 후 종료 + 플레이어 체력소진창 3초
 		exit(1);
 	}
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -535,35 +764,54 @@ void Update_Round(int stair) {
 	}
 
 	SET_GREEN
-	GotoXY(27, 32);
+	GotoXY(20, 32);
 	printf("턴을 종료하려면 E를 누르십시오");
-	GotoXY(73, 32);
-	printf("선택할 카드를 G,H,J,K,L순으로 입력하시오");
+	GotoXY(60, 32);
+	printf("선택할 카드를 1~5순으로 입력하시오");
 	GotoXY(3, 2);
 	printf("Player");
 	GotoXY(12, 2);
 	printf("♥ %d/80", Player.hp);
-	GotoXY(30, 2);
+	GotoXY(22, 2);
 	printf("%d층", Info.stair);
+	GotoXY(32, 2);
+	printf("힘 : %d", Player.power);
 	GotoXY(50, 2);
 	printf("에너지 (%d/3)", Info.energy);
-	GotoXY(80, 2);
+	GotoXY(100, 2);
 	SET_RED
-	printf("적의 체력 %d/20", Enemy.hp);
+		if (Info.stair == 1) {
+			printf("적의 체력 %d/14", Enemy[0].hp);
+		}
+		else if (Info.stair == 2) {
+			printf("적의 체력 %d/15", Enemy[1].hp);
+		}
+		else if (Info.stair == 3) {
+			printf("적의 체력 %d/40", Enemy[2].hp);
+		}
+		else if (Info.stair == 4) {
+			printf("적의 체력 %d/50", Enemy[3].hp);
+		}
+		else if (Info.stair == 5) {
+			printf("적의 체력 %d/48", Enemy[4].hp);
+		}
+		else if (Info.stair == 6) {
+			printf("적의 체력 %d/20", Enemy[5].hp);
+		}
+		else if (Info.stair == 7) {
+			printf("적의 체력 %d/60", Enemy[6].hp);
+		}
+		else if (Info.stair == 8) {
+			printf("적의 체력 %d/75", Enemy[7].hp);
+		}
+		else if (Info.stair == 9) {
+			printf("적의 체력 %d/100", Enemy[8].hp);
+		}
+		else if (Info.stair == 10) {
+			printf("적의 체력 %d/150", Enemy[9].hp);
+		}
 	SET_WHITE
 
 	MyCharacterDraw(hConsole);
 	DrawEnemyCharacter(Info.stair);
-}
-
-void Round_Clear(int stair) {
-	Clear();
-	if (stair == 10) {
-		//게임 클리어 화면 띄우기
-		//Game_Clear();
-	}
-	else {
-		Info.stair++;
-		//다음 라운드 진행
-	}
 }

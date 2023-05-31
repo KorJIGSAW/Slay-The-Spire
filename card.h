@@ -28,6 +28,7 @@ void AddCardToDeck() { //선택한 카드를 덱에 추가하는 함수
 
 void MixCard(int CardCount, ListNode* MyDeck) {//	덱에서 카드를 섞는다.
 	int a, b;
+	srand((unsigned)time(NULL));
 
 	a = rand() % CardCount;
 	b = rand() % CardCount;
@@ -37,11 +38,15 @@ void MixCard(int CardCount, ListNode* MyDeck) {//	덱에서 카드를 섞는다.
 	clist* list = (clist *)malloc(sizeof(clist));
 	list->first = MyDeck;
 	list->count = 0;
-
 	change_data(list, a, b); //오류가능성
-
+	GotoXY(50, 20);
+	SET_GREEN
+	printf("카드를 섞는중입니다...");
+	SET_WHITE
+	Sleep(300);
+	Clear();
 	Deck_print(MyDeck);
-
+	
 	free(list);
 }
 
