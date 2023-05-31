@@ -439,8 +439,6 @@ void SetGame() {
 	Player.shield = 0;
 	MixCard(Info.Deck_count, Player.Mydeck);
 
-
-
 	// 현재 스텟을 표기하기 위한 창분리 위쪽 체력창칸 분리 등.
 	GotoXY(0, 0);
 	DrawBox(120, 30);
@@ -450,7 +448,7 @@ void SetGame() {
 	}
 
 	SET_GREEN
-		GotoXY(27, 32);
+	GotoXY(27, 32);
 	printf("턴을 종료하려면 E를 누르십시오");
 	GotoXY(73, 32);
 	printf("선택할 카드를 G,H,J,K,L순으로 입력하시오");
@@ -535,7 +533,7 @@ void Update_Round(int stair) {
 	}
 
 	SET_GREEN
-		GotoXY(27, 32);
+	GotoXY(27, 32);
 	printf("턴을 종료하려면 E를 누르십시오");
 	GotoXY(73, 32);
 	printf("선택할 카드를 G,H,J,K,L순으로 입력하시오");
@@ -549,10 +547,10 @@ void Update_Round(int stair) {
 	printf("에너지 (%d/3)", Info.energy);
 	GotoXY(80, 2);
 	SET_RED
-		printf("적의 체력 %d/20", Enemy.hp);
+	printf("적의 체력 %d/20", Enemy.hp);
 	SET_WHITE
 
-		MyCharacterDraw(hConsole);
+	MyCharacterDraw(hConsole);
 	DrawEnemyCharacter(Info.stair);
 }
 
