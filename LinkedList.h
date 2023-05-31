@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "draw.h"
 
+int Deck_sequence[5];
+
 typedef struct ListNode {
 	int data;
 	struct ListNode* link;
@@ -15,7 +17,7 @@ typedef struct CountList {
 	int count;
 }clist;
 
-ListNode* insert_first(ListNode *head, int value) {
+ListNode* insert_first(ListNode* head, int value) {
 	ListNode* p = (ListNode*)malloc(sizeof(ListNode));
 	p->data = value;
 	p->link = head;
@@ -42,7 +44,7 @@ void change_data(clist* list, int a, int b) {
 	for (int i = a; i < b; i++) {
 		k = k->link;
 	}
-	
+
 	temp = k->data;
 	k->data = ret->data;
 	ret->data = temp;
@@ -68,7 +70,7 @@ ListNode* delete_first(ListNode* head) {
 }
 
 ListNode* delete_(ListNode* head, ListNode* pre) {
-	ListNode *removed;
+	ListNode* removed;
 	removed = pre->link;
 	pre->link = removed->link;
 	free(removed);
@@ -79,6 +81,7 @@ void Deck_print(ListNode* head) {
 	int count = 0;
 	for (ListNode* p = head; p != NULL; p = p->link) {
 		DrawCard(p->data, count);
+		Deck_sequence[count] = p->data; //뽑은 패의 순서를 Deck_sequence에 담는다.
 		count++;
 		if (count == 5) {
 			break;

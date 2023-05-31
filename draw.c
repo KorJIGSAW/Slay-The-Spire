@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+﻿﻿#include <stdio.h>
 #include "console.h"
 #include "draw.h"
 #include "input.h"
@@ -37,7 +37,7 @@ void DrawMainTitle() {
 	printf("██████╔╝███████╗██║░░██║░░░██║░░░  ░░░██║░░░██║░░██║███████╗  ██████╔╝██║░░░░░██║██║░░██║███████╗\n");
 	printf("╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░  ░░░╚═╝░░░╚═╝░░╚═╝╚══════╝  ╚═════╝░╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝\n");
 	*/
-	
+
 }
 
 void DrawBox(int width, int height) {
@@ -46,7 +46,7 @@ void DrawBox(int width, int height) {
 	// Top border
 	GotoXY(1, 1);
 	printf("┌");
-	for (i = 3; i < width - 1; i+=2) {
+	for (i = 3; i < width - 1; i += 2) {
 		printf("─");
 	}
 	printf("┐");
@@ -55,14 +55,14 @@ void DrawBox(int width, int height) {
 	for (i = 2; i < height - 1; i++) {
 		GotoXY(1, i);
 		printf("│");
-		GotoXY(width-1, i);
+		GotoXY(width - 1, i);
 		printf("│");
 	}
 
 	// Bottom border
-	GotoXY(1, height-1);
+	GotoXY(1, height - 1);
 	printf("└");
-	for (i = 3; i < width - 1; i+=2) {
+	for (i = 3; i < width - 1; i += 2) {
 		printf("─");
 	}
 	printf("┘");
@@ -89,61 +89,59 @@ int MenuDraw()
 		switch (n)
 		{
 
-			case DOWN:
+		case DOWN:
+		{
+			//PlaySoundEffect(SOUND_SELECT);
+			if (mode == 0)
 			{
-				//PlaySoundEffect(SOUND_SELECT);
+				TutorialDraw(hConsole);
+				mode = 1;
+			}
+			else if (mode == 1)
+			{
+				ShowCardMenuDraw(hConsole);
+				mode = 2;
+			}
+			else if (mode == 2) {
+				ExitMenuDraw(hConsole);
+				mode = 3;
+			}
+			break;
+		}
 
-				if (mode == 0)
-				{
-					TutorialDraw(hConsole);
-					mode = 1;
-				}
-				else if (mode == 1)
-				{
-					ShowCardMenuDraw(hConsole);
-					mode = 2;
-				}
-				else if (mode == 2) {
-					ExitMenuDraw(hConsole);
-					mode = 3;
-				}
-				break;
+		case UP:
+		{
+			//PlaySoundEffect(SOUND_SELECT);
+			if (mode == 4) {
+				ExitMenuDraw(hConsole);
+				mode = 3;
+			}
+			else if (mode == 3) {
+				ShowCardMenuDraw(hConsole);
+				mode = 2;
+			}
+			else if (mode == 2)
+			{
+				TutorialDraw(hConsole);
+				mode = 1;
 			}
 
-			case UP:
+			else if (mode == 1)
 			{
-				//PlaySoundEffect(SOUND_SELECT);
-
-				if (mode == 4) {
-					ExitMenuDraw(hConsole);
-					mode = 3;
-				}
-				else if (mode == 3) {
-					ShowCardMenuDraw(hConsole);
-					mode = 2;
-				}
-				else if (mode == 2)
-				{
-					TutorialDraw(hConsole);
-					mode = 1;
-				}
-
-				else if (mode == 1)
-				{
-					StartMenuDraw(hConsole);
-					mode = 0;
-				}
-				break;
+				StartMenuDraw(hConsole);
+				mode = 0;
 			}
+			break;
+		}
 
-			case SPACE:
-			{
-				return mode;
-			}
-			case 'r':
-				return mode;
-			case 'R':
-				return mode;
+		case SPACE:
+		{
+			return mode;
+		}
+		case 'r':
+			return mode;
+		case 'R':
+			return mode;
 		}
 	}
 }
@@ -197,16 +195,16 @@ void ExitMenuDraw(HANDLE hConsole)
 	SET_WHITE printf("   카드 목록");
 	GotoXY(55, 23);
 	SET_GREEN printf("▶ 게임 종료");
-	
+
 	SET_WHITE
 }
 
 void MyCharacterDraw(HANDLE hConsole) {
 	GotoXY(20, 13);
 	SET_GREEN
-	printf("    Player     \n");
+		printf("    Player     \n");
 	SET_WHITE
-	GotoXY(20, 14);
+		GotoXY(20, 14);
 	printf("    -@!\n");
 	GotoXY(20, 15);
 	printf("   -@@@@;..\n");
@@ -242,10 +240,10 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 	//Slime
 	GotoXY(80, 24);
 	SET_GREEN
-	printf("    Slime\n");
+		printf("    Slime\n");
 	SET_WHITE
-	GotoXY(80, 25);
-	printf("    :::::$ \n"); 
+		GotoXY(80, 25);
+	printf("    :::::$ \n");
 	GotoXY(80, 26);
 	printf("   :"); SET_RED printf("◆"); SET_WHITE printf(":"); SET_RED printf("◆"); SET_WHITE printf("::!\n");
 	GotoXY(80, 27);
@@ -258,7 +256,7 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 	SET_GREEN
 		printf("    Guardian\n");
 	SET_WHITE
-	GotoXY(95, 14);
+		GotoXY(95, 14);
 	printf("       !*      \n");
 	GotoXY(95, 15);
 	printf("       :;      \n");
@@ -293,9 +291,9 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 	GotoXY(76, 14);
 	printf(",.. ");
 	SET_GREEN
-	printf("Protector");
+		printf("Protector");
 	SET_WHITE
-	GotoXY(76, 15);
+		GotoXY(76, 15);
 	printf("~");  SET_RED printf("◆"); SET_WHITE printf("~. - :; , ");
 	GotoXY(76, 16);
 	printf("-:! .,,,.,#  ..:");
@@ -317,12 +315,12 @@ void GameOverDraw() {
 	//system("cls");	
 
 	//Game Over 글자 출력
-	GotoXY(9,  4); printf(".----------------------------------------------------------------------------------------------------.");
-	GotoXY(9,  5); printf("| Slay the Spire.exe                                                                             |x| |");
-	GotoXY(9,  6); printf("|----------------------------------------------------------------------------------------------------|");
-	GotoXY(9,  7); printf("|                                                                                                    |");
-	GotoXY(9,  8); printf("|                                                                                                    |");
-	GotoXY(9,  9); printf("|                                                                                                    |");
+	GotoXY(9, 4); printf(".----------------------------------------------------------------------------------------------------.");
+	GotoXY(9, 5); printf("| Slay the Spire.exe                                                                             |x| |");
+	GotoXY(9, 6); printf("|----------------------------------------------------------------------------------------------------|");
+	GotoXY(9, 7); printf("|                                                                                                    |");
+	GotoXY(9, 8); printf("|                                                                                                    |");
+	GotoXY(9, 9); printf("|                                                                                                    |");
 	GotoXY(9, 10); printf("|                                                                                                    |");
 	GotoXY(9, 11); printf("|      ,-----.    ,---.    ,--.   ,--.  .------.          ,-----. ,--.    ,--. ,------.,------.      |");
 	GotoXY(9, 12); printf("|     |  ,---/   / ,-. \\   |   `.'   |  |  .---'         / .-.  '\\   \\   /   / |  .---'|   /`. '     |");
@@ -363,14 +361,14 @@ void CardListDraw() { //카드 목록 그리기
 	Clear();
 	for (int i = 0; i < 14; i++) {
 		printf("카드 이름 : ");
-		if (i == 0 || i == 2 || i == 3 || i == 5 ||  i == 7 || i == 8 || i == 12 || i ==13) {//공격 카드
+		if (i == 0 || i == 2 || i == 3 || i == 5 || i == 7 || i == 8 || i == 12 || i == 13) {//공격 카드
 			SET_RED
-			printf("%s\n", card[i].name);
+				printf("%s\n", card[i].name);
 			SET_WHITE
 		}
 		else if (i == 1 || i == 4 || i == 6 || i == 9 || i == 10 || i == 11) { //스킬카드 일때
 			SET_GREEN
-			printf("%s\n", card[i].name);
+				printf("%s\n", card[i].name);
 			SET_WHITE
 		}
 		if (i == 2 || i == 3 || i == 8 || i == 10) {
@@ -396,14 +394,14 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	//system("cls");
 	Clear();
 	GotoXY(0, 0);
-	DrawBox(120,30);
+	DrawBox(120, 30);
 	for (int i = 3; i < 119; i++) {
 		GotoXY(i, 3);
 		printf("-");
 	}
 
 	SET_GREEN
-	GotoXY(55, 31);
+		GotoXY(55, 31);
 	printf("Page (1/3)");
 	GotoXY(3, 2);
 	printf("JIGSAW_GO");
@@ -413,7 +411,7 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	printf("층수 1");
 
 	SET_WHITE
-	GotoXY(60, 13);
+		GotoXY(60, 13);
 	printf("손에 있는 카드를 사용하여 적들을 물리치십시오!");
 	GotoXY(60, 15);
 	printf("카드를 사용하려면 "); SET_GREEN printf("에너지"); SET_WHITE printf("가 필요합니다.");
@@ -425,7 +423,7 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	SET_GREEN printf("에너지"); SET_WHITE printf("를 다시 채웁니다.");
 
 	SET_GREEN
-	GotoXY(3, 31);
+		GotoXY(3, 31);
 	printf("R을 누르면 메인화면으로 돌아갑니다.\n");
 	GotoXY(83, 2);
 	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
@@ -433,7 +431,7 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
 	SET_WHITE
 
-	GotoXY(10, 7);
+		GotoXY(10, 7);
 	printf("┌─────────────────────┐");
 	GotoXY(10, 8);
 	printf("│                                          │");
@@ -467,7 +465,7 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	printf("│                                          │");
 	GotoXY(10, 23);
 	printf("│                                          │");
-	GotoXY(10, 24);                     
+	GotoXY(10, 24);
 	printf("└─────────────────────┘");
 }
 
@@ -480,7 +478,7 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	}
 
 	SET_GREEN
-	GotoXY(55, 31);
+		GotoXY(55, 31);
 	printf("Page (2/3)");
 	GotoXY(3, 2);
 	printf("JIGSAW_GO");
@@ -490,17 +488,17 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	printf("층수 1");
 
 	SET_WHITE
-	GotoXY(60, 13);
+		GotoXY(60, 13);
 	printf("적들이 당신을 공격하려 하면, 방어 카드를");
 	GotoXY(60, 14);
 	printf("사용하여 "); SET_GREEN printf("방어도"); SET_WHITE printf("를 얻으십시오.");
 	GotoXY(60, 16);
 	SET_GREEN printf("방어도"); SET_WHITE printf("는 받는 공격 피해를 줄여주지만");
 	GotoXY(60, 17);
-	printf("당신의 다음 턴이 시작될 때");	SET_RED printf(" 효과가 사라집니다."); SET_WHITE 
+	printf("당신의 다음 턴이 시작될 때");	SET_RED printf(" 효과가 사라집니다."); SET_WHITE
 
-	SET_GREEN
-	GotoXY(3, 31);
+		SET_GREEN
+		GotoXY(3, 31);
 	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
 	GotoXY(83, 2);
 	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
@@ -508,7 +506,7 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
 	SET_WHITE
 
-	GotoXY(10, 7);
+		GotoXY(10, 7);
 	printf("┌─────────────────────┐");
 	GotoXY(10, 8);
 	printf("│                                          │");
@@ -555,7 +553,7 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	}
 
 	SET_GREEN
-	GotoXY(55, 31);
+		GotoXY(55, 31);
 	printf("Page (3/3)");
 	GotoXY(3, 2);
 
@@ -566,7 +564,7 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	printf("층수 1");
 	SET_WHITE
 
-	GotoXY(60, 13);
+		GotoXY(60, 13);
 	printf("당신의 턴이 진행될 동안 적의"); SET_GREEN printf(" 태세"); SET_WHITE printf("를");
 	GotoXY(60, 14);
 	printf("확인할 수 있습니다.");
@@ -576,7 +574,7 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	printf("올리십시오!");
 
 	SET_GREEN
-	GotoXY(3, 31);
+		GotoXY(3, 31);
 	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
 	GotoXY(83, 2);
 	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
@@ -584,7 +582,7 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	printf("R을 누르면 메인화면으로 넘어갑니다.\n");
 	SET_WHITE
 
-	GotoXY(10, 7);
+		GotoXY(10, 7);
 	printf("┌─────────────────────┐");
 	GotoXY(10, 8);
 	printf("│                                          │");
@@ -623,9 +621,9 @@ void PlayExampleDraw3(HANDLE hConsole) {
 }
 
 void DrawCard(int value, int count) { // 카드를 드로우하는 함수
-	GotoXY(count*25, 35);
-	printf("       %s", card[value].name);
-	GotoXY(count*25, 37);
+	GotoXY(count * 25, 35);
+	printf("     %d.%s", count + 1, card[value].name);
+	GotoXY(count * 25, 37);
 	if (value == 0) { //타격
 		printf("에너지 : 1");
 		GotoXY(count * 25, 38);
@@ -714,4 +712,5 @@ void DrawCard(int value, int count) { // 카드를 드로우하는 함수
 		GotoXY(count * 25, 39);
 		printf("카드 드로우 : 1장\n");
 	}
+	SET_WHITE
 }
