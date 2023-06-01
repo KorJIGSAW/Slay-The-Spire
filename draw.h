@@ -13,6 +13,7 @@ typedef struct Card {
 	int My_debuff;
 	int Enemy_debuff;
 	char description[150];
+	int energy;
 }Card;
 
 Card card[14];

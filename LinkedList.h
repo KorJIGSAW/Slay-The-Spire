@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "draw.h"
 
+int Deck_sequence[5];
+
 typedef struct ListNode {
 	int data;
 	struct ListNode* link;
@@ -79,6 +81,7 @@ void Deck_print(ListNode* head) {
 	int count = 0;
 	for (ListNode* p = head; p != NULL; p = p->link) {
 		DrawCard(p->data, count);
+		Deck_sequence[count] = p->data; //뽑은 패의 순서를 Deck_sequence에 담는다.
 		count++;
 		if (count == 5) {
 			break;

@@ -92,7 +92,6 @@ int MenuDraw()
 			case DOWN:
 			{
 				//PlaySoundEffect(SOUND_SELECT);
-
 				if (mode == 0)
 				{
 					TutorialDraw(hConsole);
@@ -113,7 +112,6 @@ int MenuDraw()
 			case UP:
 			{
 				//PlaySoundEffect(SOUND_SELECT);
-
 				if (mode == 4) {
 					ExitMenuDraw(hConsole);
 					mode = 3;
@@ -356,6 +354,20 @@ void CreatingCard() {
 		fgets(card[i].description, sizeof(card[i].description), stdin);
 		card[i].description[strcspn(card[i].description, "\n")] = '\0'; // 문자 제거
 	}
+	card[0].energy = 1;
+	card[1].energy = 1;
+	card[2].energy = 2;
+	card[3].energy = 2;
+	card[4].energy = 1;
+	card[5].energy = 1;
+	card[6].energy = 0;
+	card[7].energy = 1;
+	card[8].energy = 2;
+	card[9].energy = 0;
+	card[10].energy = 2;
+	card[11].energy = 3;
+	card[12].energy = 3;
+	card[13].energy = 1;
 }
 
 void CardListDraw() { //카드 목록 그리기	
@@ -624,7 +636,7 @@ void PlayExampleDraw3(HANDLE hConsole) {
 
 void DrawCard(int value, int count) { // 카드를 드로우하는 함수
 	GotoXY(count*25, 35);
-	printf("       %s", card[value].name);
+	printf("     %d.%s", count+1, card[value].name);
 	GotoXY(count*25, 37);
 	if (value == 0) { //타격
 		printf("에너지 : 1");
@@ -714,4 +726,6 @@ void DrawCard(int value, int count) { // 카드를 드로우하는 함수
 		GotoXY(count * 25, 39);
 		printf("카드 드로우 : 1장\n");
 	}
+	SET_WHITE
 }
+
