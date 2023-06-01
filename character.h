@@ -9,11 +9,26 @@ typedef struct MyCharacter {
 	ListNode* Mydeck;
 }MyCharacter;
 
+typedef struct EnemyPattern EnemyPattern;
+
+struct EnemyPattern {
+	int is_damage;
+	int Enemy_damage;
+	int is_protect;
+	int Enemy_protect;
+	int is_buff;
+	int power_raise;
+};
+
 typedef struct EnemyCharacter {
 	int hp;
 	int power;
 	int shield;
-}EnemyCharacter;
+	EnemyPattern pattern[5];
+} EnemyCharacter;
+
+
+
 
 /* ´ë¾È
 typedef struct Character {
