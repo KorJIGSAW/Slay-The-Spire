@@ -627,6 +627,8 @@ void Round_Clear(int stair) {
 	else {
 		//다음 라운드 진행
 		Info.stair++;
+		//카드 보상 3중 1택
+		//Choose_Card();
 		Clear();
 		SET_GREEN
 			//3번 깜박임
