@@ -10,6 +10,7 @@ typedef struct status {
 	int Picked_Card; //»ÌÀº Ä«µå
 	int Deck_count;
 	int Turn_End;
+	int Turn_Count;
 }INFORMATION;
 
 /*

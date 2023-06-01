@@ -356,7 +356,7 @@ void DrawEnemyCharacter(int stair) { //슬라임
 void UseCard(int num) {
 	if (num == 0) { //타격
 		Info.energy--;
-		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 6 - Player.power;
+		Enemy[Info.stair-1].hp -= 6 + Player.power - Enemy[Info.stair - 1].shield;
 	}
 	else if (num == 1) { //수비
 		Info.energy--;
@@ -364,12 +364,12 @@ void UseCard(int num) {
 	}
 	else if (num == 2) { //강타
 		Info.energy -= 2;
-		Enemy[Info.stair-1].hp -= 8 + Player.power;
+		Enemy[Info.stair-1].hp -= 8 + Player.power - Enemy[Info.stair - 1].shield;
 		Player.power++;
 	}
 	else if (num == 3) { //완벽한 타격
 		Info.energy -= 2;
-		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 16 - Player.power;
+		Enemy[Info.stair-1].hp -= 16 + Player.power - Enemy[Info.stair - 1].shield;
 	}
 	else if (num == 4) { //발화
 		Info.energy--;
@@ -378,7 +378,7 @@ void UseCard(int num) {
 	else if (num == 5) { //철의 파동
 		Info.energy--;
 		Player.shield = 5;
-		Enemy[Info.stair-1].hp -= 5;
+		Enemy[Info.stair-1].hp -= 5 + Player.power - Enemy[Info.stair - 1].shield;
 	}
 	else if (num == 6) { //사혈
 		Player.hp -= 3;
@@ -387,12 +387,12 @@ void UseCard(int num) {
 	else if (num == 7) { //연타
 		Info.energy--;
 		for (int i = 0; i < 4; i++) {
-			Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 2 - Player.power;
+			Enemy[Info.stair-1].hp -= 2 + Player.power - Enemy[Info.stair - 1].shield;
 		}
 	}
 	else if (num == 8) { //화형
 		Info.energy -= 2;
-		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 21 - Player.power;
+		Enemy[Info.stair-1].hp -= 21 + Player.power - Enemy[Info.stair - 1].shield;
 		Player.power--;
 	}
 	else if (num == 9) { //제물
@@ -410,11 +410,11 @@ void UseCard(int num) {
 	}
 	else if (num == 12) { //몽둥이질
 		Info.energy -= 3;
-		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 32 - Player.power;
+		Enemy[Info.stair-1].hp -= 32 + Player.power - Enemy[Info.stair - 1].shield;
 	}
 	else if (num == 13) { //드롭킥
 		Info.energy--;
-		Enemy[Info.stair-1].hp = Enemy[Info.stair-1].hp - 5 - Player.power;
+		Enemy[Info.stair-1].hp -= 5 + Player.power - Enemy[Info.stair - 1].shield;
 	}
 
 }
@@ -454,6 +454,7 @@ void Enemy_Pattern_Set(int random) {
 		//슬라임의 공격 설정
 		Enemy[0].pattern[0].Enemy_damage = 4;
 		Enemy[0].pattern[0].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 1 && random == 1) {
 		//슬라임의 수비 설정
@@ -470,6 +471,7 @@ void Enemy_Pattern_Set(int random) {
 		//공벌레의 공격 설정
 		Enemy[1].pattern[0].Enemy_damage = 7;
 		Enemy[1].pattern[0].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 2 && random == 1) {
 		//공벌레의 수비 설정
@@ -491,11 +493,13 @@ void Enemy_Pattern_Set(int random) {
 		//턱벌레의 공격11
 		Enemy[Info.stair-1].pattern[0].Enemy_damage = 11;
 		Enemy[Info.stair-1].pattern[0].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 3 && random == 1) {
 		//턱벌레의 공격7
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 7;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 3 && random == 2) {
 		//턱벌레의 방어도6
@@ -511,6 +515,7 @@ void Enemy_Pattern_Set(int random) {
 		//보초기의 공격10
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 10;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 4 && random == 1) {
 		//보초기의 플레이어 힘감소1
@@ -521,11 +526,13 @@ void Enemy_Pattern_Set(int random) {
 		//보초기의 공격20
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 20;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 5 && random == 0) {
 		//카카의 공격6 and 힘증가2
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 6;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 		Enemy[Info.stair - 1].pattern[random].is_buff = 1;
 		Enemy->power += 2;
 	}
@@ -538,6 +545,7 @@ void Enemy_Pattern_Set(int random) {
 		//수호기의 공격10
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 10;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 6 && random == 2) {
 		//수호기의 방어도10
@@ -548,6 +556,7 @@ void Enemy_Pattern_Set(int random) {
 		//수호기의 공격5
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 5;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 7 && random == 0) {
 		//스네코의 플레이어힘감소1
@@ -558,11 +567,13 @@ void Enemy_Pattern_Set(int random) {
 		//스네코의 공격15
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 15;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 7 && random == 2) {
 		//스네코의 공격8
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 8;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 8 && random == 0) {
 		//대왕슬라임의 플레이어 힘감소2
@@ -573,6 +584,7 @@ void Enemy_Pattern_Set(int random) {
 		//대왕슬라임의 공격20
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 20;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 8 && random == 2) {
 		//대왕슬라임의 ?아무것도 하지않는다.
@@ -588,6 +600,7 @@ void Enemy_Pattern_Set(int random) {
 		//도누의 공격 20
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 20;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 9 && random == 2) {
 		//도누의 방어도 10
@@ -603,6 +616,7 @@ void Enemy_Pattern_Set(int random) {
 		//데카의 공격 22
 		Enemy[Info.stair - 1].pattern[random].Enemy_damage = 22;
 		Enemy[Info.stair - 1].pattern[random].is_damage = 1;
+		Player.hp -= Enemy[Info.stair - 1].pattern[random].Enemy_damage + Enemy[Info.stair - 1].power - Player.shield;
 	}
 	else if (Info.stair == 10 && random == 2) {
 		//방어력 10
@@ -640,6 +654,7 @@ void SetGame() {
 	Info.stair = 1;
 	Info.Turn_End = 0;
 	Info.Deck_count = 10;
+	Info.Turn_Count = 1;
 
 	// 플레이어 기본세팅
 	Player.Mydeck = Init_Card();
@@ -674,6 +689,7 @@ void SetGame() {
 	printf("힘 : %d", Player.power);
 	GotoXY(50, 2);
 	printf("에너지 (%d/3)", Info.energy);
+	RanPick_Enemy_Pattern(Info.stair);
 	
 	SET_RED
 		GotoXY(70, 2);
@@ -817,14 +833,37 @@ void SetGame() {
 				Update_Round(Info.stair);
 				Deck_print(Player.Mydeck);
 			}
-			else if (temp == 54) {
+			else if (temp == 'e' || temp == 'E') {
 				Info.Turn_End = 1;
+				Info.Turn_Count++;
 				Clear();
-				Update_Round(Info.stair);
+				SET_GREEN
+					GotoXY(45, 20);
+				if (Enemy[Info.stair - 1].pattern[randnum].is_damage == 1) {
+					printf("몬스터가 플레이어에게 %d만큼 공격합니다!", Enemy[Info.stair - 1].pattern[randnum].Enemy_damage);
+				}
+				else if (Enemy[Info.stair - 1].pattern[randnum].is_protect == 1) {
+					printf("몬스터가 %d만큼 방어도를 올립니다!", Enemy[Info.stair - 1].pattern[randnum].Enemy_protect);
+				}
+				else if (Enemy[Info.stair - 1].pattern[randnum].is_buff == 1) {
+					printf("몬스터가 디버프를 사용합니다!");
+				}
+				Sleep(1000);
+				SET_WHITE
+				Clear();
+				End_Turn();
 				Deck_print(Player.Mydeck);
 			}
 		}
 	}
+}
+void End_Turn() {
+	Clear();
+	Info.energy = 3;
+	Info.Turn_End = 0;
+	Player.shield = 0;
+	RanPick_Enemy_Pattern(Info.stair);
+	Update_Round(Info.stair);
 }
 
 void Round_Clear(int stair) {
@@ -832,6 +871,7 @@ void Round_Clear(int stair) {
 	if (stair == 10) {
 		//게임 클리어 화면 띄우기
 		//Game_Clear();
+
 	}
 	else {
 		//다음 라운드 진행
@@ -862,6 +902,8 @@ void Round_Clear(int stair) {
 		Info.Turn_End = 0;
 		Player.power = 0;
 		Player.shield = 0;
+
+		RanPick_Enemy_Pattern(Info.stair);
 		if (Info.stair == 2) {
 			StopSound();
 			Music_Round2();
@@ -902,7 +944,7 @@ void Round_Clear(int stair) {
 }
 
 void Update_Round(int stair) {
-	RanPick_Enemy_Pattern(Info.stair);
+
 	if (Enemy[stair-1].hp <= 0) {
 		Round_Clear(Info.stair);
 		SET_RED
