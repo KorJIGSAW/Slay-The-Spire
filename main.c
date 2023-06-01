@@ -12,6 +12,7 @@
 #include "CSound.h" //음악 재생 헤더파일
 #include "input.h" //값 입력 헤더
 #include "game.h"
+//#include "LinkedList.h"
 
 void StartGame() {
 	CreatingCard();
@@ -46,6 +47,7 @@ MainMonitor:
 					//system("cls");
 					Clear();
 					goto MainMonitor;
+
 				}
 			}
 		}
@@ -70,13 +72,6 @@ MainMonitor:
 					Clear();
 					goto Example2;
 					break;
-				}
-				else if (temp == 'D' || temp == 'd') { //자신의 카드덱 확인
-					Music_Select();
-					//system("cls");
-					Clear();
-					break;
-					//자신의 카드덱 프린트함수
 				}
 			}
 		}
@@ -108,13 +103,6 @@ MainMonitor:
 					goto Example3;
 					break;
 				}
-				else if (temp == 'D' || temp == 'd') { //자신의 카드덱 확인
-					Music_Select();
-					//system("cls");
-					Clear();
-					break;
-					//자신의 카드덱 프린트함수
-				}
 			}
 		}
 	Example3:
@@ -136,13 +124,6 @@ MainMonitor:
 					//system("cls");
 					Clear();
 					goto MainMonitor;
-				}
-				else if (temp == 'D' || temp == 'd') { //자신의 카드덱 확인
-					Music_Select();
-					//system("cls");
-					Clear();
-					break;
-					//자신의 카드덱 프린트함수
 				}
 			}
 		}

@@ -11,33 +11,45 @@ void FirstDraw() {
 }
 
 void DrawMainTitle() {
-	// 
 	GotoXY(17, 5);
-	printf("       _____  _                   _    _               _____         _              \n");
-	GotoXY(17, 6);
-	printf("      /  ___|| |                 | |  | |             /  ___|       (_)             \n");
-	GotoXY(17, 7);
-	printf("      \\ `--. | |  __ _  _   _    | |_ | |__    ___    \\ `--.  _ __   _  _ __   ___  \n");
-	GotoXY(17, 8);
-	printf("       `--. \\| | / _` || | | |   | __|| '_ \\  / _ \\    `--. \\| '_ \\ | || '__| / _ \\ \n");
-	GotoXY(17, 9);
-	printf("      /\\__/ /| || (_| || |_| |   | |_ | | | ||  __/   /\\__/ /| |_) || || |   |  __/ \n");
-	GotoXY(17, 10);
-	printf("      \\____/ |_| \\__,_| \\__, |    \\__||_| |_| \\___|   \\____/ | .__/ |_||_|    \\___| \n");
-	GotoXY(17, 11);
-	printf("                         __/ |                             | |                    \n");
-	GotoXY(17, 12);
-	printf("                        |___/                              |_|                    \n");
+	SET_GREEN printf("       _____  _                   "); SET_YELLOW printf("_    _               "); SET_RED printf("_____         _              \n"); SET_GREEN
 
-	/*임시 제목
+	GotoXY(17, 6);
+	printf("      /  ___|| |                 "); SET_YELLOW printf("| |  | |             "); SET_RED printf("/ ___ |       (_)             \n"); SET_GREEN
+
+	GotoXY(17, 7);
+	printf("      \\ `--. | |  __ _  _   _    "); SET_YELLOW printf("| |_ | |__    ___    "); SET_RED printf("\\ `- - ._ __   _  _ __   ___  \n"); SET_GREEN
+
+	GotoXY(17, 8);
+	printf("       `--. \\| | / _` || | | |   "); SET_YELLOW printf("| __|| '_ \\  / _ \\    "); SET_RED printf("`--. \\| '_ \\ | || '__| / _ \\ \n"); SET_GREEN
+
+	GotoXY(17, 9);
+	printf("      /\\__/ /| || (_| || |_| |   "); SET_YELLOW printf("| |_ | | | ||  __/ "); SET_RED printf("  /\\__/ /| |_) || || |   |  __/ \n"); SET_GREEN
+
+	GotoXY(17, 10);
+	printf("      \\____/ |_| \\__,_| \\__, |   "); SET_YELLOW printf("\\__/ |_| |_| \\___| "); SET_RED printf("  \\____/ |. __/ |_||_|    \\___| \n"); SET_GREEN
+
+	GotoXY(17, 11);
+	printf("                         __/ |"); SET_RED printf("                               | |                    \n"); SET_GREEN
+
+	GotoXY(17, 12);
+	printf("                        |___/"); SET_RED printf("                                |_| \n");
+	SET_WHITE
+
+	/*
+	 GotoXY(17, 5);
 	printf("░██████╗██╗░░░░░░█████╗░██╗░░░██╗  ████████╗██╗░░██╗███████╗  ░██████╗██████╗░██╗██████╗░███████╗\n");
+		GotoXY(17, 6);
 	printf("██╔════╝██║░░░░░██╔══██╗╚██╗░██╔╝  ╚══██╔══╝██║░░██║██╔════╝  ██╔════╝██╔══██╗██║██╔══██╗██╔════╝\n");
+	GotoXY(17, 7);
 	printf("╚█████╗░██║░░░░░███████║░╚████╔╝░  ░░░██║░░░███████║█████╗░░  ╚█████╗░██████╔╝██║██████╔╝█████╗░░\n");
+	GotoXY(17, 8);
 	printf("░╚═══██╗██║░░░░░██╔══██║░░╚██╔╝░░  ░░░██║░░░██╔══██║██╔══╝░░  ░╚═══██╗██╔═══╝░██║██╔══██╗██╔══╝░░\n");
+		GotoXY(17, 9);
 	printf("██████╔╝███████╗██║░░██║░░░██║░░░  ░░░██║░░░██║░░██║███████╗  ██████╔╝██║░░░░░██║██║░░██║███████╗\n");
+	GotoXY(17, 10);
 	printf("╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░  ░░░╚═╝░░░╚═╝░░╚═╝╚══════╝  ╚═════╝░╚═╝░░░░░╚═╝╚═╝░░╚═╝╚══════╝\n");
 	*/
-	
 }
 
 void DrawBox(int width, int height) {
@@ -239,7 +251,7 @@ void MyCharacterDraw(HANDLE hConsole) {
 void EnemyCharacterDraw(HANDLE hConsole) {
 	//Slime
 	GotoXY(80, 24);
-	SET_GREEN
+	SET_RED
 	printf("    Slime\n");
 	SET_WHITE
 	GotoXY(80, 25);
@@ -253,7 +265,7 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 
 	//Guardian
 	GotoXY(95, 13);
-	SET_GREEN
+	SET_RED
 		printf("    Guardian\n");
 	SET_WHITE
 	GotoXY(95, 14);
@@ -290,7 +302,7 @@ void EnemyCharacterDraw(HANDLE hConsole) {
 	//Protector
 	GotoXY(76, 14);
 	printf(",.. ");
-	SET_GREEN
+	SET_RED
 	printf("Protector");
 	SET_WHITE
 	GotoXY(76, 15);
@@ -415,14 +427,25 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	}
 
 	SET_GREEN
+	GotoXY(3, 2);
+	printf("Player");
+	GotoXY(12, 2);
+	printf("♥ 80/80");
+	GotoXY(22, 2);
+	printf("%1층");
+	GotoXY(32, 2);
+	printf("힘 : 0");
+	GotoXY(40, 2);
+	printf("에너지 (3/3)");
+	GotoXY(55, 2);
+	printf("내 방어도 : 0");
+	GotoXY(46, 4);
+	printf("↑");
 	GotoXY(55, 31);
 	printf("Page (1/3)");
-	GotoXY(3, 2);
-	printf("JIGSAW_GO");
-	GotoXY(20, 2);
-	printf("♥ 80/80");
-	GotoXY(50, 2);
-	printf("층수 1");
+	SET_RED
+	GotoXY(70, 2);
+	printf("몬스터가 7만큼 공격합니다!");
 
 	SET_WHITE
 	GotoXY(60, 13);
@@ -439,47 +462,45 @@ void PlayExampleDraw1(HANDLE hConsole) { //게임 설명 그리기
 	SET_GREEN
 	GotoXY(3, 31);
 	printf("R을 누르면 메인화면으로 돌아갑니다.\n");
-	GotoXY(83, 2);
-	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
 	GotoXY(80, 31);
 	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
 	SET_WHITE
 
-	GotoXY(10, 7);
+	GotoXY(7, 7);
 	printf("┌─────────────────────┐");
-	GotoXY(10, 8);
+	GotoXY(7, 8);
 	printf("│                                          │");
-	GotoXY(10, 9);
+	GotoXY(7, 9);
 	printf("│                                          │");
-	GotoXY(10, 10);
+	GotoXY(7, 10);
 	printf("│                                          │");
-	GotoXY(10, 11);
+	GotoXY(7, 11);
+	printf("│1."); SET_RED printf("타격    "); SET_WHITE  printf("2."); SET_RED printf("강타    "); SET_WHITE printf("3."); SET_GREEN printf("수비   "); SET_WHITE printf("4."); SET_GREEN printf("악마의 형상"); SET_WHITE printf("│"); 
+	GotoXY(7, 12);
+	printf("│에너지:1  에너지:2  에너지:1 에너지:3     │");
+	GotoXY(7, 13);
+	printf("│공격:6    공격:8    방어:5   매턴 힘3증가 │");
+	GotoXY(7, 14);
 	printf("│                                          │");
-	GotoXY(10, 12);
+	GotoXY(7, 15);
 	printf("│                                          │");
-	GotoXY(10, 13);
+	GotoXY(7, 16);
 	printf("│                                          │");
-	GotoXY(10, 14);
+	GotoXY(7, 17);
 	printf("│                                          │");
-	GotoXY(10, 15);
+	GotoXY(7, 18);
+	printf("│    총 "); SET_GREEN printf("에너지"); SET_WHITE printf(" 수에 맞게 카드를 선택해서   │");
+	GotoXY(7, 19);
+	printf("│            사용가능합니다!               │");
+	GotoXY(7, 20);
 	printf("│                                          │");
-	GotoXY(10, 16);
+	GotoXY(7, 21);
 	printf("│                                          │");
-	GotoXY(10, 17);
+	GotoXY(7, 22);
 	printf("│                                          │");
-	GotoXY(10, 18);
+	GotoXY(7, 23);
 	printf("│                                          │");
-	GotoXY(10, 19);
-	printf("│                                          │");
-	GotoXY(10, 20);
-	printf("│                                          │");
-	GotoXY(10, 21);
-	printf("│                                          │");
-	GotoXY(10, 22);
-	printf("│                                          │");
-	GotoXY(10, 23);
-	printf("│                                          │");
-	GotoXY(10, 24);                     
+	GotoXY(7, 24);                     
 	printf("└─────────────────────┘");
 }
 
@@ -492,14 +513,25 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	}
 
 	SET_GREEN
+		GotoXY(3, 2);
+	printf("Player");
+	GotoXY(12, 2);
+	printf("♥ 80/80");
+	GotoXY(22, 2);
+	printf("%1층");
+	GotoXY(32, 2);
+	printf("힘 : 0");
+	GotoXY(40, 2);
+	printf("에너지 (3/3)");
+	GotoXY(55, 2);
+	printf("내 방어도 : 0");
+	GotoXY(66, 4);
+	printf("↑");
 	GotoXY(55, 31);
 	printf("Page (2/3)");
-	GotoXY(3, 2);
-	printf("JIGSAW_GO");
-	GotoXY(20, 2);
-	printf("♥ 80/80");
-	GotoXY(50, 2);
-	printf("층수 1");
+	SET_RED
+	GotoXY(70, 2);
+	printf("몬스터가 7만큼 공격합니다!");
 
 	SET_WHITE
 	GotoXY(60, 13);
@@ -514,8 +546,6 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	SET_GREEN
 	GotoXY(3, 31);
 	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
-	GotoXY(83, 2);
-	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
 	GotoXY(80, 31);
 	printf("N을 누르면 다음화면으로 넘어갑니다.\n");
 	SET_WHITE
@@ -525,15 +555,15 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	GotoXY(10, 8);
 	printf("│                                          │");
 	GotoXY(10, 9);
-	printf("│                                          │");
+	printf("│        총 "); SET_GREEN printf("10"); SET_WHITE printf("라운드로 구성되어있고        │");
 	GotoXY(10, 10);
 	printf("│                                          │");
 	GotoXY(10, 11);
 	printf("│                                          │");
 	GotoXY(10, 12);
-	printf("│                                          │");
+	printf("│     라운드마다 "); SET_GREEN printf("적의 체력이 0"); SET_WHITE printf(" 이 된다면   │");
 	GotoXY(10, 13);
-	printf("│                                          │");
+	printf("│        다음 라운드로 넘어갑니다.         │");
 	GotoXY(10, 14);
 	printf("│                                          │");
 	GotoXY(10, 15);
@@ -543,9 +573,9 @@ void PlayExampleDraw2(HANDLE hConsole) {
 	GotoXY(10, 17);
 	printf("│                                          │");
 	GotoXY(10, 18);
-	printf("│                                          │");
+	printf("│      만약 "); SET_RED printf("플레이어의 체력"); SET_WHITE printf("이 0이 되면     │");
 	GotoXY(10, 19);
-	printf("│                                          │");
+	printf("│           게임은 종료됩니다.             │");
 	GotoXY(10, 20);
 	printf("│                                          │");
 	GotoXY(10, 21);
@@ -569,13 +599,24 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	SET_GREEN
 	GotoXY(55, 31);
 	printf("Page (3/3)");
-	GotoXY(3, 2);
 
-	printf("JIGSAW_GO");
-	GotoXY(20, 2);
+	GotoXY(3, 2);
+	printf("Player");
+	GotoXY(12, 2);
 	printf("♥ 80/80");
-	GotoXY(50, 2);
-	printf("층수 1");
+	GotoXY(22, 2);
+	printf("%1층");
+	GotoXY(32, 2);
+	printf("힘 : 0");
+	GotoXY(40, 2);
+	printf("에너지 (3/3)");
+	GotoXY(55, 2);
+	printf("내 방어도 : 0");
+	SET_RED
+	GotoXY(70, 2);
+	printf("몬스터가 7만큼 공격합니다!");
+	GotoXY(82, 4);
+	printf("↑");
 	SET_WHITE
 
 	GotoXY(60, 13);
@@ -590,8 +631,6 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	SET_GREEN
 	GotoXY(3, 31);
 	printf("B를 누르면 이전화면으로 돌아갑니다.\n");
-	GotoXY(83, 2);
-	printf("D를 누르면 덱을 확인할 수 있습니다.\n");
 	GotoXY(80, 31);
 	printf("R을 누르면 메인화면으로 넘어갑니다.\n");
 	SET_WHITE
@@ -603,27 +642,27 @@ void PlayExampleDraw3(HANDLE hConsole) {
 	GotoXY(10, 9);
 	printf("│                                          │");
 	GotoXY(10, 10);
-	printf("│                                          │");
+	printf("│   적의 태세에는 3가지 종류가 있습니다.   │");
 	GotoXY(10, 11);
 	printf("│                                          │");
 	GotoXY(10, 12);
-	printf("│                                          │");
+	printf("│    "); SET_RED printf("1. 몬스터가 10만큼 공격합니다!"); SET_WHITE printf("        │");
 	GotoXY(10, 13);
 	printf("│                                          │");
 	GotoXY(10, 14);
-	printf("│                                          │");
+	printf("│    "); SET_RED printf("2. 몬스터가 10만큼 방어도를 얻습니다!"); SET_WHITE printf(" │");
 	GotoXY(10, 15);
 	printf("│                                          │");
 	GotoXY(10, 16);
-	printf("│                                          │");
+	printf("│    "); SET_RED printf("3. 몬스터가 디버프를 사용합니다!"); SET_WHITE printf("      │");
 	GotoXY(10, 17);
 	printf("│                                          │");
 	GotoXY(10, 18);
-	printf("│                                          │");
+	printf("│  각 상황에 맞게 적절한 카드를 선택하여   │");
 	GotoXY(10, 19);
 	printf("│                                          │");
 	GotoXY(10, 20);
-	printf("│                                          │");
+	printf("│         게임을 "); SET_GREEN printf("클리어"); SET_WHITE printf("하십시오!           │");
 	GotoXY(10, 21);
 	printf("│                                          │");
 	GotoXY(10, 22);

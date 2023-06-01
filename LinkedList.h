@@ -69,7 +69,7 @@ ListNode* delete_first(ListNode* head) {
 	return head;
 }
 
-ListNode* delete_(ListNode* head, ListNode* pre) {
+ListNode* delete(ListNode* head, ListNode* pre) {
 	ListNode *removed;
 	removed = pre->link;
 	pre->link = removed->link;

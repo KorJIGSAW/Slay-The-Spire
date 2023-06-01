@@ -8,9 +8,10 @@
 #include "draw.h"
 #include "time.h"
 
+ListNode* head = NULL;
 
 ListNode* Init_Card() { //초기 카드 세팅
-	ListNode* head = NULL;
+	
 	for (int i = 0; i < 5; i++) { //5장 타격설정
 		head = insert_first(head, 0); //타격
 	}
@@ -22,8 +23,9 @@ ListNode* Init_Card() { //초기 카드 세팅
 	return head;
 }
 
-void AddCardToDeck() { //선택한 카드를 덱에 추가하는 함수
-
+void AddCardToDeck(int num) { //선택한 카드를 덱에 추가하는 함수
+	head = insert_first(head, num);
+	return head;
 }
 
 void MixCard(int CardCount, ListNode* MyDeck) {//	덱에서 카드를 섞는다.
